@@ -228,13 +228,16 @@ font-style: normal;
     transition: opacity 0.8s ease;
 }
 
+/* 1. THE WRAPPER: Handles the smooth, full-screen blur */
 #envelope-wrapper {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     display: flex; justify-content: center; align-items: center;
     z-index: 9999 !important; 
     
-    /* THE FIX: We make the wrapper completely invisible */
-    background-color: transparent; 
+    background-color: rgba(244, 241, 234, 0.3); /* Slight tint */
+    backdrop-filter: blur(12px); /* Blurs the landing page */
+    -webkit-backdrop-filter: blur(12px);
+    
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -242,13 +245,30 @@ font-style: normal;
     position: relative; width: 90vw; height: 60vw;
     max-width: 600px; max-height: 400px;
     z-index: 10 !important; perspective: 1500px; 
-    border-radius: 2px;
-    
-    /* 1. The normal 3D drop shadow for the envelope */
     filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3));
+}
+
+/* 2. THE BRIGHT LIGHT: Hides the empty space */
+.envelope-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 100%; height: 100%;
+    transform: translate(-50%, -50%) scale(0.5);
     
-    /* 2. THE SPOTLIGHT TRICK: This massive shadow dims everything OUTSIDE the envelope, leaving the inside perfectly clear! */
-    box-shadow: 0 0 0 100vmax rgba(244, 241, 234, 0.85); 
+    /* A blinding white and gold radial gradient */
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,253,230,0.9) 40%, rgba(255,255,255,0) 80%);
+    box-shadow: 0 0 100px 50px rgba(255, 255, 255, 0.9);
+    
+    z-index: 2; /* Sits right behind the front pocket */
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.6s ease-out;
+}
+
+/* 3. LIGHT EXPANDS WHEN OPENED */
+.open .envelope-glow {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.6); /* Bursts outwards! */
 }
 
 /* 1. BACKING */
@@ -500,6 +520,7 @@ margin-top: 0;
     
 <div id="envelope-wrapper">
     <div class="envelope">
+        <div class="envelope-glow"></div>
         <div class="flap-container">
             <div class="top-flap" style="background-image: url('6938.jpg');"></div> 
             
@@ -1116,12 +1137,13 @@ function openInvitation() {
         void flap.offsetWidth; 
     }
 
-    // 2. Open the envelope flap and disable the seal
+    // 2. Open the flap (triggers the glow!)
     const wrapper = document.getElementById('envelope-wrapper');
     wrapper.classList.add('open');
     document.getElementById('seal').style.pointerEvents = "none";
 
-    // 3. Wait 0.8s for the flap to open, then trigger the exit fade
+    // 3. SPEED UP THE EXIT! 
+    // Triggers after just 0.4s (right as the light bursts out and the flap is opening)
     setTimeout(() => {
         wrapper.classList.add('wrapper-exit');
         
@@ -1130,14 +1152,10 @@ function openInvitation() {
             document.body.classList.add('show-site');
             document.documentElement.classList.add('show-site'); 
             
-            // Force scroll to top just in case
             window.scrollTo(0, 0); 
-            
-            // Trigger the scroll animations so text glides in
             window.dispatchEvent(new Event('scroll'));
-            
         }, 800); 
-    }, 800); 
+    }, 400); // <--- This number used to be 800. 400 makes it overlap beautifully!
 }
 
 
