@@ -39,7 +39,65 @@
 
 }
 
+/* =========================================
+   MUSIC BUTTON SECTION STYLES
+   ========================================= */#musicBtn {
+position: fixed !important;
+bottom: 25px !important;
+right: 25px !important;
+z-index: 9999 !important;
+width: 50px !important;
+height: 50px !important;
+border-radius: 50% !important;
+border: 1.5px solid #d4af37 !important;
+cursor: pointer !important;
+display: none; /* JS makes this flex when opening */
+align-items: center !important;
+justify-content: center !important;
+box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
 
+/* Fades in on scroll */
+opacity: 0; 
+pointer-events: none;
+transition: opacity 0.5s ease, background-color 0.4s ease !important;
+
+/* Pink Background for Paused */
+background-color: #f4cfe0 !important; 
+}
+
+/* Green Icon for Paused */
+#musicBtn svg path {
+fill: #043927 !important; 
+transition: fill 0.4s ease !important;
+}
+
+/* --- PLAYING STATE (Green Background, Gold Icon) --- */
+#musicBtn.playing {
+background-color: #043927 !important; /* Green Background */
+}
+
+#musicBtn.playing svg path {
+fill: #d4af37 !important; /* Gold Icon */
+}
+
+/* PULSING ANIMATION (Only the Icon) */
+#musicBtn.playing svg {
+animation: icon-pulse 1.2s infinite ease-in-out !important;
+transform-origin: center;
+}
+
+@keyframes icon-pulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.35); }
+100% { transform: scale(1); }
+}
+
+
+/* Your existing scroll container fix */
+#scroll-container {
+bottom: 90px !important; 
+right: 25px !important;
+}
 /* 1. Attire Photos (Desktop: 2 Columns) */
 .attire-grid {
     display: grid;
@@ -393,52 +451,6 @@ height: 70vw;    /* Make it taller (was 60vw) */
 }
 
 
-/* 2. Make the letter occupy more space inside the envelope */
-.letter {
-position: absolute;
-    bottom: 0; left: 15%; width: 70%; height: 70%; 
-    background: white;
-    z-index: 2 !important; 
-    border: 1px solid var(--gold); 
-    display: flex; flex-direction: column;
-    justify-content: center !important; 
-    align-items: center; text-align: center;
-    padding-top: 20px !important; padding-bottom: 60px !important; 
-    padding-left: 20px; padding-right: 20px; box-sizing: border-box;
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
-    
-    /* DELETED the translateZ that messed up the stacking */
-    transform: translateY(0); 
-    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s;
-    opacity: 0;
-    visibility: hidden;
-}
-
-/* 3. Shrink the Title Text */
-.letter h2 {
-font-size: 1.8rem; /* Smaller than the desktop 2.3rem */
-margin-bottom: 5px;
-}
-
-/* 4. Shrink the Question Text */
-.letter p {
-font-size: 0.7rem; /* Tiny but readable text */
-margin: 5px 0 10px 0;
-}
-
-/* 5. Compact Buttons */
-.letter button {
-padding: 6px 15px;
-font-size: 0.7rem;
-}
-
-/* 6. Slide it UP HIGHER on mobile */
-.open .letter {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(-50%)
-}
-
 
 @keyframes bounce {
 0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
@@ -511,7 +523,13 @@ margin-top: 0;
         <div id="envelope-label">To our beloved Guest</div>
     </div>
 </div>
+<audio id="bg-music" loop><source src="bgm.mp3" id="config-audio" type="audio/mpeg"></audio>
 
+<button id="musicBtn" onclick="toggleMusic()">
+<svg viewBox="0 0 24 24" width="24" height="24">
+<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+</svg>
+</button>
 
 <div id="main-site">
 
