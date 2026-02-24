@@ -212,6 +212,10 @@ font-style: normal;
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     display: flex; justify-content: center; align-items: center;
     z-index: 9999 !important; background-color: rgba(244, 241, 234, 0.3);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* For Apple/Safari devices */
+    
     transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -219,6 +223,7 @@ font-style: normal;
     position: relative; width: 90vw; height: 60vw;
     max-width: 600px; max-height: 400px;
     z-index: 10 !important; perspective: 1500px; 
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3));
 }
 
 /* 1. BACKING */
@@ -488,7 +493,7 @@ margin-top: 0;
     </div>
 </div>
 
-<div id="main-site" style="display:none;">
+<div id="main-site">
 
 <section id="landing-hero" style="position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 5svh;">
 <div class="hero-content" style="position: relative; text-align: center; z-index: 2; max-width: 90vw;">
@@ -1090,21 +1095,19 @@ function openInvitation() {
     wrapper.classList.add('open');
     document.getElementById('seal').style.pointerEvents = "none";
 
-    // 3. Wait for the flap to open (0.8s), then trigger the exit animation!
+    // 3. Wait 0.8s for the flap to open, then trigger the exit fade
     setTimeout(() => {
         wrapper.classList.add('wrapper-exit');
         
-        // 4. Wait for the exit fade (0.8s), then show the main website
+        // 4. Wait for the fade out, then unlock scrolling!
         setTimeout(() => {
-            document.getElementById('main-site').style.display = 'block';
-            
-            // Unlock scrolling
             document.body.classList.add('show-site');
             document.documentElement.classList.add('show-site'); 
             
-            window.scrollTo(0, 0); // Force to top
+            // Force scroll to top just in case
+            window.scrollTo(0, 0); 
             
-            // Trigger the scroll reveal animations for the landing page
+            // Trigger the scroll animations so text glides in
             window.dispatchEvent(new Event('scroll'));
             
         }, 800); 
