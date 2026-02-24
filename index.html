@@ -13,23 +13,19 @@
 <style>
 .envelope-glow {
     position: absolute;
-    top: 40%; /* Positioned where the opening begins */
-    left: 50%;
-    width: 80px;
-    height: 80px;
-    /* Intense radial light */
-    background: radial-gradient(circle, #fff 0%, #fff9e6 30%, rgba(255,255,255,0) 70%);
-    filter: blur(10px);
+    top: 40%; left: 50%;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, #fff 0%, #fff9e6 50%, transparent 100%);
+    filter: blur(15px);
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
-    z-index: 2; /* Sits behind the front pocket but in front of the back */
-    transition: transform 0.7s ease-out, opacity 0.4s ease-out;
+    z-index: 2; 
+    transition: transform 0.8s ease-out, opacity 0.5s ease;
 }
 
-/* When the seal is clicked, the light bursts out */
 .open .envelope-glow {
-    transform: translate(-50%, -50%) scale(12); /* Massive expansion */
     opacity: 1;
+    transform: translate(-50%, -50%) scale(15); /* Bursts to cover the envelope */
 }
 @media screen and (max-width: 600px) {
     #envelope-label {
@@ -432,7 +428,7 @@ border-color: var(--gold);
 #envelope-wrapper.wrapper-exit {
 opacity: 0 !important;
 transform: scale(1.15) !important;
-pointer-events: none;
+pointer-events: none !important;
 
 /* Set this to 0.8s (or your preferred duration) */
 transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) !important;
@@ -1397,26 +1393,25 @@ function openInvitation() {
     const wrapper = document.getElementById('envelope-wrapper');
     const flap = document.querySelector('.flap-container');
 
-    // 1. Stop bobbing and trigger 'open' (Flap lifts + Light bursts)
+    // 1. Open the flap and trigger the light burst
+    wrapper.classList.add('open');
     if (flap) {
         flap.style.animation = 'none';
         void flap.offsetWidth; 
     }
-    wrapper.classList.add('open');
     document.getElementById('seal').style.pointerEvents = "none";
 
-    // 2. TRIGGER ENVELOPE EXIT
-    // 600ms allows the flap to lift and the light to peak before the exit
+    // 2. TRIGGER EXIT (0.5s delay so the light peaks then vanishes)
     setTimeout(() => {
         wrapper.classList.add('wrapper-exit');
         
-        // Unlock site
+        // 3. Unlock scrolling
         document.body.classList.add('show-site');
         document.documentElement.classList.add('show-site'); 
         
         window.scrollTo(0, 0); 
         window.dispatchEvent(new Event('scroll'));
-    }, 600); 
+    }, 500); 
 }
 
 
