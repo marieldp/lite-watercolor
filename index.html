@@ -17,13 +17,39 @@
         font-size: 1.3rem;
         letter-spacing: 1px;
     }
-    #glass-overlay {
-        -webkit-mask-size: 100% 100%, 600px 400px;
+
+    .rsvp-card {
+        min-height: 480px; /* Taller baseline for phones so it never has to stretch */
+        padding: 30px 15px; /* Less padding on phones gives the text more room */
     }
 }
 
+/* This locks the section height to prevent the "jump" */
+#rsvp {
+    min-height: 500px; /* Adjust this number to match your card's height */
+    display: flex;
+    align-items: center; /* Keeps the card centered vertically */
+    justify-content: center;
+}
 
-#musicBtn {
+/* Ensures the container doesn't collapse during the switch */
+#rsvp-form-container, 
+#rsvp-search-container {
+    width: 100%;
+    max-width: 450px; /* Keeps your card width consistent */
+    margin: 0 auto;
+}
+    
+#gifting img {
+width: 100% !important;
+height: 100% !important;
+object-fit: contain !important; /* This keeps the whole QR visible but fits it in the box */
+padding: 10px; /* Gives the QR some breathing room inside the gold frame */
+}
+
+/* =========================================
+   MUSIC BUTTON SECTION STYLES
+   ========================================= */#musicBtn {
 position: fixed !important;
 bottom: 25px !important;
 right: 25px !important;
@@ -81,8 +107,57 @@ bottom: 90px !important;
 right: 25px !important;
 }
 
+/* =========================================
+   ENTOURAGE SECTION STYLES
+   ========================================= */
+/* Fix for the Entourage names cutting off */
+#entourage p {
+font-size: 16px !important;
+/* Line-height creates the vertical "margin" between stacked names */
+line-height: 1.8 !important; 
+font-weight: 400;
+margin-top: 5px !important;
+margin-bottom: 20px !important; /* Space between the ROLE and the next role */
+padding: 0 15px;
+display: block;
+letter-spacing: 0.5px;
+animation: fadeInName 0.8s ease forwards;
+}
 
 
+/* Optional: Shrink the 'The Entourage' header slightly for mobile */
+#entourage h2 {
+font-size: 42px !important;
+}
+/* =========================================
+   DRESS CODE SECTION STYLES
+   ========================================= */
+
+/* 1. Attire Photos (Desktop: 2 Columns) */
+.attire-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px 20px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* 2. Celebration Colors (Desktop: 1 Horizontal Row) */
+.colors-grid {
+    display: flex;
+    flex-wrap: nowrap; /* Forces them onto a single line */
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column; /* Puts the text neatly under the circle */
+    align-items: center;
+    gap: 8px;
+}
 
 /* --- MOBILE RESPONSIVENESS (Phones & Tablets) --- */
 @media screen and (max-width: 768px) {
@@ -115,6 +190,29 @@ right: 25px !important;
     .open .letter {
         transform: translateY(-75%) !important; /* Increased from -60% to clear the taller pocket */
     }
+}
+
+
+
+#dress-code img {
+max-height: 250px !important; /* Makes images slightly larger on mobile */
+}
+
+/* 2. Aligns the Celebration Color Palette */
+#dress-code div[style*="flex-wrap: wrap"] {
+display: grid !important;
+grid-template-columns: 1fr 1fr !important; /* Neatly aligns circles 2x2 */
+gap: 30px 10px !important;
+justify-items: center;
+max-width: 300px;
+margin: 0 auto;
+}
+
+/* 3. Centers the text under each color circle */
+#dress-code div[style*="display: flex; align-items: center; gap: 12px"] {
+flex-direction: column !important; /* Puts label under the circle */
+text-align: center;
+gap: 8px !important;
 }
 
 
@@ -210,65 +308,18 @@ font-style: normal;
 --paper: #fcfaf7; --gold: #bfa17a; --text: #4a4a4a; --accent: #043927; --pink: #f4cfe0; 
 }
 
-#glass-overlay {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: 9998; /* Sits directly behind the envelope */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    background-color: rgba(244, 241, 234, 0.6);
-    
-    /* THIS CUTS A CLEAR HOLE EXACTLY WHERE THE ENVELOPE IS */
-    -webkit-mask-image: linear-gradient(black, black), linear-gradient(black, black);
-    -webkit-mask-position: center;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    -webkit-mask-size: 100% 100%, 90vw 60vw; /* Mobile envelope size */
-    
-    transition: opacity 0.8s ease;
-}
 
-/* 1. THE WRAPPER: Handles the smooth, full-screen blur */
 #envelope-wrapper {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     display: flex; justify-content: center; align-items: center;
-    z-index: 9999 !important; 
-    
-    background-color: rgba(244, 241, 234, 0.3); /* Slight tint */
-    backdrop-filter: blur(12px); /* Blurs the landing page */
-    -webkit-backdrop-filter: blur(12px);
-    
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999 !important; background-color: #f4f1ea;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .envelope {
     position: relative; width: 90vw; height: 60vw;
     max-width: 600px; max-height: 400px;
     z-index: 10 !important; perspective: 1500px; 
-    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3));
-}
-
-/* 2. THE BRIGHT LIGHT: Hides the empty space */
-.envelope-glow {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 100%; height: 100%;
-    transform: translate(-50%, -50%) scale(0.5);
-    
-    /* A blinding white and gold radial gradient */
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,253,230,0.9) 40%, rgba(255,255,255,0) 80%);
-    box-shadow: 0 0 100px 50px rgba(255, 255, 255, 0.9);
-    
-    z-index: 2; /* Sits right behind the front pocket */
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.6s ease-out;
-}
-
-/* 3. LIGHT EXPANDS WHEN OPENED */
-.open .envelope-glow {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.6); /* Bursts outwards! */
 }
 
 /* 1. BACKING */
@@ -292,7 +343,69 @@ font-style: normal;
     background-size: 100% 100%;
 }
 
+/* --- THE LETTER (Always Inside) AND EVERYTHING INSIDE IT --- */
+.letter {
+    position: absolute; bottom: 0; left: 15%; width: 70%; height: 70%; 
+    background: white; z-index: 2 !important; border: 1px solid var(--gold); 
+    display: flex; flex-direction: column; justify-content: center !important; 
+    align-items: center; text-align: center;
+    padding-top: 20px !important; padding-bottom: 60px !important; 
+    padding-left: 20px; padding-right: 20px; box-sizing: border-box;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    transform: translateY(0); opacity: 0; visibility: hidden;
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s;
+}
 
+.letter h2 {
+font-family: 'Allison', cursive !important;
+font-size: 3.2rem !important;
+color: var(--accent);
+font-weight: 400;
+margin-top: 0 !important; /* Keeps it tight */
+margin-bottom: 5px;
+line-height: 1;
+}
+.letter p {
+font-family: 'Montserrat', sans-serif;
+font-size: 0.85rem;
+text-transform: uppercase;
+letter-spacing: 2px;
+color: var(--text);
+margin: 10px 0 20px 0;
+}
+
+/* Buttons inside the Letter */
+.letter button {
+padding: 10px 25px;
+font-family: 'Montserrat', sans-serif;
+font-size: 0.8rem;
+text-transform: uppercase;
+letter-spacing: 1px;
+cursor: pointer;
+border: 1px solid var(--accent);
+transition: all 0.3s ease;
+}
+
+/* The "YES" Button Style */
+.letter button.btn-yes {
+background-color: var(--accent);
+color: white;
+}
+.letter button.btn-yes:hover {
+background-color: var(--gold);
+border-color: var(--gold);
+}
+
+/* The "NO" Button Style */
+.letter button.btn-no {
+background-color: transparent;
+color: var(--accent);
+}
+.letter button.btn-no:hover {
+background-color: #fcfaf7;
+color: var(--gold);
+border-color: var(--gold);
+}
 
 /* --- ENVELOPE EXIT ANIMATION --- */
 /* This specific combination overrides the 0.6s base transition */
@@ -381,16 +494,101 @@ transform: translateY(0);
 /* Reduced from -8px to -3px for a barely-there breath */
 transform: translateY(-3px); 
 } 
-}    
-@keyframes seal-bob { 0%, 100% { transform: translate(-50%, -50%); } 
-50% { transform: translate(-50%, -53%); }
-                     
+}    @keyframes seal-bob { 0%, 100% { transform: translate(-50%, -50%); } 
+50% { transform: translate(-50%, -53%); } /* Very slight nudge */ } }
 @keyframes elegantPulse {
 0%, 100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.4; }
 50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.8; }
 }
 .hidden { display: none !important; }
 
+/* --- RSVP FORM STYLING --- */
+.rsvp-card {
+background: #fff;
+padding: 40px;
+max-width: 600px;
+margin: 0 auto;
+border: 1px solid var(--gold); /* Adds a classy gold border */
+box-shadow: 0 15px 45px rgba(4, 57, 39, 0.15);
+text-align: center; /* Centers the "Hi [Name]" */
+display: flex;
+flex-direction: column;
+
+/* THE FIX: Force all cards to be the exact same baseline height */
+min-height: 450px; 
+justify-content: center; /* This keeps the text perfectly centered inside */
+box-sizing: border-box; /* THIS KEEPS IT CENTERED */
+
+position: relative; 
+overflow: hidden; 
+padding-top: 80px; /* Pushes the text down slightly so the flower fits */
+    
+}
+
+
+/* Elegant Header */
+.rsvp-card h2 {
+font-family: 'Great Vibes', cursive;
+color: var(--accent);
+font-size: 3rem;
+margin-bottom: 20px;
+}
+
+/* Labels */
+.rsvp-card label {
+font-family: 'Montserrat', sans-serif;
+font-size: 0.9rem;
+text-transform: uppercase;
+letter-spacing: 2px;
+color: var(--text);
+margin-bottom: 8px;
+text-align: left; /* Labels look better aligned left */
+width: 100%;
+display: block;
+}
+
+/* Inputs & Selects */
+.rsvp-card input, 
+.rsvp-card select, 
+.rsvp-card textarea {
+width: 100%;
+padding: 12px;
+margin-bottom: 20px;
+border: 1px solid #ddd;
+border-radius: 4px;
+font-family: 'Montserrat', sans-serif;
+font-size: 1rem;
+background: #fcfaf7; /* Slight off-white to match theme */
+color: var(--accent);
+box-sizing: border-box; /* Prevents padding from breaking width */
+}
+
+/* Focus State (When you click an input) */
+.rsvp-card input:focus, 
+.rsvp-card select:focus, 
+.rsvp-card textarea:focus {
+outline: none;
+border-color: var(--gold);
+background: white;
+}
+
+/* The Confirm Button */
+.rsvp-card button {
+background-color: var(--accent);
+color: white;
+font-family: 'Montserrat', sans-serif;
+text-transform: uppercase;
+letter-spacing: 2px;
+padding: 15px 30px;
+border: none;
+cursor: pointer;
+margin-top: 10px;
+transition: background 0.3s ease;
+}
+
+.rsvp-card button:hover {
+background-color: var(--gold);
+}
 
 /* --- THE GUEST LABEL (On top of the pocket) --- */
 #envelope-label {
@@ -494,6 +692,7 @@ margin-top: 0;
     width: 100% !important;
     position: relative !important; /* Anchors it to the page */
     overflow: hidden !important;
+    clip-path: inset(0 0 0 0); /* The Guillotine that traps the image */
     background-color: #f4f1ea; /* Matches envelope fading */
 }
 
@@ -517,30 +716,53 @@ margin-top: 0;
 </style>
 </head>
 <body>
-    
+
 <div id="envelope-wrapper">
-    <div class="envelope">
-        <div class="envelope-glow"></div>
-        <div class="flap-container">
-            <div class="top-flap" style="background-image: url('6938.jpg');"></div> 
-            
-            <div class="seal-bob-wrapper">
-                <div id="seal" onclick="openInvitation()">
-                    <img src="seal.png" alt="Seal">
-                </div>
-            </div>
-        </div>
+<div class="envelope">
+<div class="envelope-back" style="background-image: url('6938.jpg');"></div>
 
-        <div class="envelope-pocket-main" style="background-image: url('6938.jpg');"></div> 
-        <div class="envelope-lines"></div> 
-        <div class="bottom-flap" style="background-image: url('6938.jpg');"></div> 
-        <div class="bottom-flap-lines"></div> 
-
-        <div id="envelope-label">To our beloved Guest</div>
-    </div>
+<div class="letter">
+<div class="letter-content">
+<h2 id="config-letter-initials" style="font-family: 'Allison'; color: var(--accent); margin: 0; font-size: 2.3rem;">M & J</h2>
+<p style="font-family: 'Montserrat'; font-size: 0.8rem; margin: 10px 0;">Experience with music?</p>
+<div style="display:flex; gap:10px; justify-content:center;">
+<button type="button" onclick="handleMusic(true, event)" style="padding:8px 20px; background:var(--accent); color:white; border:none; cursor:pointer; font-family: 'Montserrat'; text-transform: uppercase;">YES</button>
+<button type="button" onclick="handleMusic(false, event)" style="padding:8px 20px; background:white; border:1px solid var(--accent); cursor:pointer; font-family: 'Montserrat'; text-transform: uppercase;">NO</button>
+</div>
+</div>
 </div>
 
-<div id="main-site">
+<div class="internal-shadow"></div> 
+
+<div class="flap-container">
+<div class="top-flap" style="background-image: url('6938.jpg');"></div> 
+
+<div class="seal-bob-wrapper">
+<div id="seal" onclick="openInvitation()">
+<img src="seal.png" alt="Seal">
+</div>
+</div>
+</div>
+
+<div class="envelope-pocket-main" style="background-image: url('6938.jpg');"></div> 
+<div class="envelope-lines"></div> 
+<div class="bottom-flap" style="background-image: url('6938.jpg');"></div> 
+<div class="bottom-flap-lines"></div> 
+
+<div id="envelope-label">To our beloved Guest</div>
+
+</div>
+</div>
+
+<audio id="bg-music" loop><source src="bgm.mp3" id="config-audio" type="audio/mpeg"></audio>
+
+<button id="musicBtn" onclick="toggleMusic()">
+<svg viewBox="0 0 24 24" width="24" height="24">
+<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+</svg>
+</button>
+
+<div id="main-site" style="display:none;">
 
 <section id="landing-hero" style="position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 5svh;">
 <div class="hero-content" style="position: relative; text-align: center; z-index: 2; max-width: 90vw;">
@@ -598,6 +820,41 @@ request the honor of your presence as they exchange marriage vows and celebrate 
 <div style="position: absolute; bottom: 12px; left: 12px; width: 30px; height: 30px; border-bottom: 2px solid #d4af37; border-left: 2px solid #d4af37;"></div>
 <div style="position: absolute; bottom: 12px; right: 12px; width: 30px; height: 30px; border-bottom: 2px solid #d4af37; border-right: 2px solid #d4af37;"></div>
 </div>
+</div>
+</div>
+
+<div class="reveal-on-scroll" style="margin: 60px auto 20px auto; max-width: 600px; text-align: center;">
+
+<p style="font-family: 'Pinyon Script', cursive; font-size: clamp(38px, 6vw, 52px); color: #d4af37; margin-bottom: 25px; line-height: 1;">
+The countdown to forever...
+</p>
+<div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.6); padding: 30px 15px; border-radius: 15px; border: 1.5px solid rgba(4, 57, 39, 0.5); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+
+<div style="flex: 1;">
+<span id="months" style="display: block; font-family: 'Playfair Display', serif; font-size: clamp(26px, 6vw, 38px); font-weight: 700; color: #d4af37; line-height: 1;">0</span>
+<span style="display: block; font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: #043927; font-weight: 700; margin-top: 10px;">Months</span>
+</div>
+
+<div style="flex: 1;">
+<span id="days" style="display: block; font-family: 'Playfair Display', serif; font-size: clamp(26px, 6vw, 38px); font-weight: 700; color: #d4af37; line-height: 1;">0</span>
+<span style="display: block; font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: #043927; font-weight: 700; margin-top: 10px;">Days</span>
+</div>
+
+<div style="flex: 1;">
+<span id="hours" style="display: block; font-family: 'Playfair Display', serif; font-size: clamp(26px, 6vw, 38px); font-weight: 700; color: #d4af37; line-height: 1;">0</span>
+<span style="display: block; font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: #043927; font-weight: 700; margin-top: 10px;">Hours</span>
+</div>
+
+<div style="flex: 1;">
+<span id="minutes" style="display: block; font-family: 'Playfair Display', serif; font-size: clamp(26px, 6vw, 38px); font-weight: 700; color: #d4af37; line-height: 1;">0</span>
+<span style="display: block; font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: #043927; font-weight: 700; margin-top: 10px;">Mins</span>
+</div>
+
+<div style="flex: 1;">
+<span id="seconds" style="display: block; font-family: 'Playfair Display', serif; font-size: clamp(26px, 6vw, 38px); font-weight: 700; color: #d4af37; line-height: 1;">0</span>
+<span style="display: block; font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: #043927; font-weight: 700; margin-top: 10px;">Secs</span>
+</div>
+
 </div>
 </div>
 </section>
@@ -702,8 +959,6 @@ request the honor of your presence as they exchange marriage vows and celebrate 
 <img src="flower.png" alt="Floral Footer" style="position: absolute; bottom: -4vw; left: 0; width: 100%; height: auto; display: block; transform: scale(1.05); z-index: 5; pointer-events: none;">
 </div>
 </section>
-
-    
 
 <section id="celebration" style="padding: 50px 20px 100px 20px; background-color: #fdf0f5; text-align: center;">
 <div class="reveal-on-scroll" style="max-width: 1000px; margin: 0 auto;">
@@ -1026,7 +1281,7 @@ Your presence at our wedding is the greatest gift of all. However, should you wi
 </div>
 </section>
 
-</div>
+
 <script>
 // Add this to the very top of your script block
 if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
@@ -1067,7 +1322,7 @@ hashtag: "#MarielGetsJasper",
 coordName: "Coordinator Name",
 coordNum: "0917 123 4567",
 musicFile: "bgm.mp3",
-webAppUrl: "https://script.google.com/macros/s/AKfycbyMfaiT9NkiUX31PqUgwOfhsOMcRcq654hZA2d0-3CgET0HLcCqwXJTuEyw8oeRwRUm/exec"
+webAppUrl: "https://script.google.com/macros/s/AKfycbwe3hvh8PIae668JqHeq3hfTHLhKq29AUNgeb45zlIDL0zzPpxPiv54BS6vi09nSBAR/exec"
 };
 
 // =========================================================
@@ -1130,33 +1385,22 @@ const token = urlParams.get('id');
 
 
 function openInvitation() {
-    // 1. Force stop the bobbing animation
-    const flap = document.querySelector('.flap-container');
-    if (flap) {
-        flap.style.animation = 'none';
-        void flap.offsetWidth; 
-    }
-
-    // 2. Open the flap (triggers the glow!)
-    const wrapper = document.getElementById('envelope-wrapper');
-    wrapper.classList.add('open');
-    document.getElementById('seal').style.pointerEvents = "none";
-
-    // 3. SPEED UP THE EXIT! 
-    // Triggers after just 0.4s (right as the light bursts out and the flap is opening)
-    setTimeout(() => {
-        wrapper.classList.add('wrapper-exit');
-        
-        // 4. Wait for the fade out, then unlock scrolling!
-        setTimeout(() => {
-            document.body.classList.add('show-site');
-            document.documentElement.classList.add('show-site'); 
-            
-            window.scrollTo(0, 0); 
-            window.dispatchEvent(new Event('scroll'));
-        }, 800); 
-    }, 400); // <--- This number used to be 800. 400 makes it overlap beautifully!
+// FIREFOX FIX: Force stops the bobbing animation just before opening
+const flap = document.querySelector('.flap-container');
+if (flap) {
+flap.style.animation = 'none';
+void flap.offsetWidth; // Trigger browser reflow
 }
+
+document.getElementById('envelope-wrapper').classList.add('open');
+const seal = document.getElementById('seal');
+// THE FIX: We only disable clicking, we DO NOT set opacity to 0 anymore!
+seal.style.pointerEvents = "none";
+}
+
+
+
+
 
 
 
@@ -1188,6 +1432,35 @@ function showMainForm() {
     togglePlusOneFields(hasPlusOne);
 }
 
+
+
+
+
+
+
+
+const observerOptions = { threshold: 0.1 }; 
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); } });
+}, observerOptions);
+
+/* --- SPECIAL OBSERVER JUST FOR THE TALL ENTOURAGE SECTION --- */
+const earlyObserverOptions = { threshold: 0.02, rootMargin: "0px 0px 50px 0px" }; 
+const earlyObserver = new IntersectionObserver((entries) => {
+entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); } });
+}, earlyObserverOptions);
+
+// Wait a tiny bit to ensure the main observer has finished setting up, then swap them
+setTimeout(() => {
+const entourageReveal = document.querySelector('#entourage .reveal-on-scroll');
+if (entourageReveal) {
+// Stop the normal observer from delaying it
+observer.unobserve(entourageReveal);
+// Attach the fast observer
+earlyObserver.observe(entourageReveal);
+}
+}, 500);
+
 function loadEntourage() {
 fetch(`${CONFIG.webAppUrl}?action=getEntourage`)
 .then(res => res.json())
@@ -1205,6 +1478,9 @@ el.style.opacity = "1";
 window.dispatchEvent(new Event('scroll'));
 });
 }
+
+
+
 
 
 
