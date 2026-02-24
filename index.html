@@ -231,16 +231,24 @@ font-style: normal;
 #envelope-wrapper {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     display: flex; justify-content: center; align-items: center;
-    z-index: 9999 !important; background-color: rgba(244, 241, 234, 0.3);
-
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999 !important; 
+    
+    /* THE FIX: We make the wrapper completely invisible */
+    background-color: transparent; 
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .envelope {
     position: relative; width: 90vw; height: 60vw;
     max-width: 600px; max-height: 400px;
     z-index: 10 !important; perspective: 1500px; 
+    border-radius: 2px;
+    
+    /* 1. The normal 3D drop shadow for the envelope */
     filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3));
+    
+    /* 2. THE SPOTLIGHT TRICK: This massive shadow dims everything OUTSIDE the envelope, leaving the inside perfectly clear! */
+    box-shadow: 0 0 0 100vmax rgba(244, 241, 234, 0.85); 
 }
 
 /* 1. BACKING */
@@ -1105,7 +1113,7 @@ function openInvitation() {
     const flap = document.querySelector('.flap-container');
     if (flap) {
         flap.style.animation = 'none';
-        void flap.offsetWidth; // Trigger browser reflow
+        void flap.offsetWidth; 
     }
 
     // 2. Open the envelope flap and disable the seal
@@ -1116,17 +1124,11 @@ function openInvitation() {
     // 3. Wait 0.8s for the flap to open, then trigger the exit fade
     setTimeout(() => {
         wrapper.classList.add('wrapper-exit');
-
-        document.getElementById('glass-overlay').style.opacity = '0';
         
         // 4. Wait for the fade out, then unlock scrolling!
         setTimeout(() => {
-            // Hide the overlay completely so it doesn't block clicks
-            document.getElementById('glass-overlay').style.display = 'none';
-            
             document.body.classList.add('show-site');
             document.documentElement.classList.add('show-site'); 
-            
             
             // Force scroll to top just in case
             window.scrollTo(0, 0); 
