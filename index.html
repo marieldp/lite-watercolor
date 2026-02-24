@@ -718,40 +718,28 @@ margin-top: 0;
 <body>
 
 <div id="envelope-wrapper">
-<div class="envelope">
-<div class="envelope-back" style="background-image: url('6938.jpg');"></div>
+    <div class="envelope">
+        <div class="envelope-back" style="background-image: url('6938.jpg');"></div>
 
-<div class="letter">
-<div class="letter-content">
-<h2 id="config-letter-initials" style="font-family: 'Allison'; color: var(--accent); margin: 0; font-size: 2.3rem;">M & J</h2>
-<p style="font-family: 'Montserrat'; font-size: 0.8rem; margin: 10px 0;">Experience with music?</p>
-<div style="display:flex; gap:10px; justify-content:center;">
-<button type="button" onclick="handleMusic(true, event)" style="padding:8px 20px; background:var(--accent); color:white; border:none; cursor:pointer; font-family: 'Montserrat'; text-transform: uppercase;">YES</button>
-<button type="button" onclick="handleMusic(false, event)" style="padding:8px 20px; background:white; border:1px solid var(--accent); cursor:pointer; font-family: 'Montserrat'; text-transform: uppercase;">NO</button>
-</div>
-</div>
-</div>
+        <div class="internal-shadow"></div> 
 
-<div class="internal-shadow"></div> 
+        <div class="flap-container">
+            <div class="top-flap" style="background-image: url('6938.jpg');"></div> 
+            
+            <div class="seal-bob-wrapper">
+                <div id="seal" onclick="openInvitation()">
+                    <img src="seal.png" alt="Seal">
+                </div>
+            </div>
+        </div>
 
-<div class="flap-container">
-<div class="top-flap" style="background-image: url('6938.jpg');"></div> 
+        <div class="envelope-pocket-main" style="background-image: url('6938.jpg');"></div> 
+        <div class="envelope-lines"></div> 
+        <div class="bottom-flap" style="background-image: url('6938.jpg');"></div> 
+        <div class="bottom-flap-lines"></div> 
 
-<div class="seal-bob-wrapper">
-<div id="seal" onclick="openInvitation()">
-<img src="seal.png" alt="Seal">
-</div>
-</div>
-</div>
-
-<div class="envelope-pocket-main" style="background-image: url('6938.jpg');"></div> 
-<div class="envelope-lines"></div> 
-<div class="bottom-flap" style="background-image: url('6938.jpg');"></div> 
-<div class="bottom-flap-lines"></div> 
-
-<div id="envelope-label">To our beloved Guest</div>
-
-</div>
+        <div id="envelope-label">To our beloved Guest</div>
+    </div>
 </div>
 
 <audio id="bg-music" loop><source src="bgm.mp3" id="config-audio" type="audio/mpeg"></audio>
@@ -1385,17 +1373,30 @@ const token = urlParams.get('id');
 
 
 function openInvitation() {
-// FIREFOX FIX: Force stops the bobbing animation just before opening
-const flap = document.querySelector('.flap-container');
-if (flap) {
-flap.style.animation = 'none';
-void flap.offsetWidth; // Trigger browser reflow
-}
+    // 1. Force stop the bobbing animation
+    const flap = document.querySelector('.flap-container');
+    if (flap) {
+        flap.style.animation = 'none';
+        void flap.offsetWidth; 
+    }
 
-document.getElementById('envelope-wrapper').classList.add('open');
-const seal = document.getElementById('seal');
-// THE FIX: We only disable clicking, we DO NOT set opacity to 0 anymore!
-seal.style.pointerEvents = "none";
+    // 2. Open the flap
+    const wrapper = document.getElementById('envelope-wrapper');
+    wrapper.classList.add('open');
+    document.getElementById('seal').style.pointerEvents = "none";
+
+    // 3. TRIGGER WRAPPER EXIT (After 0.6s to let the flap start moving)
+    setTimeout(() => {
+        wrapper.classList.add('wrapper-exit');
+        
+        // 4. Reveal the site and unlock scrolling
+        document.getElementById('main-site').style.display = 'block';
+        document.body.classList.add('show-site');
+        document.documentElement.classList.add('show-site'); 
+        
+        window.scrollTo(0, 0); 
+        window.dispatchEvent(new Event('scroll'));
+    }, 600); 
 }
 
 
