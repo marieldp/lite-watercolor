@@ -41,7 +41,8 @@
 
 /* =========================================
    MUSIC BUTTON SECTION STYLES
-   ========================================= */#musicBtn {
+   ========================================= */
+#musicBtn {
 position: fixed !important;
 bottom: 25px !important;
 right: 25px !important;
@@ -972,28 +973,39 @@ loadEntourage();
 function openInvitation() {
     const wrapper = document.getElementById('envelope-wrapper');
     const flap = document.querySelector('.flap-container');
+    const audio = document.getElementById('bg-music'); // Target your audio ID
+    const mBtn = document.getElementById('musicBtn'); // Target your button ID
 
-    // 1. Stop the bobbing
+    // 1. START THE MUSIC
+    // This works because the guest just clicked the seal (User Gesture)
+    if (audio) {
+        audio.play().catch(e => console.log("Music waiting for interaction"));
+        if (mBtn) mBtn.classList.add('playing');
+    }
+
+    // 2. Stop the flap bobbing
     if (flap) {
         flap.style.animation = 'none';
         void flap.offsetWidth; 
     }
     document.getElementById('seal').style.pointerEvents = "none";
 
-    // 2. Open the flap and start the light
+    // 3. Open the envelope
     wrapper.classList.add('open');
     
-    // 3. THE TINY DELAY (400 milliseconds)
+    // 4. Transition to site
     setTimeout(() => {
         wrapper.classList.add('wrapper-exit');
-        
-        // Unlock scrolling
         document.body.classList.add('show-site');
         document.documentElement.classList.add('show-site'); 
         
         window.scrollTo(0, 0); 
         window.dispatchEvent(new Event('scroll'));
-    }, 310); // You can change 400 to 300 (faster) or 600 (slower) if you want to tweak it
+
+        // 5. ACTIVATE THE SCROLL TRACKER
+        // This makes the button fade in after the guest scrolls down
+        setupMusicObserver(); 
+    }, 310); 
 }
 
 
