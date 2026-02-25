@@ -833,45 +833,35 @@ Valet Parking Available
 
 
 
-<section style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 20px; background: url('1.jpg') center/cover no-repeat; text-align: center;">
-<div class="reveal-on-scroll" style="width: 100%; max-width: 500px; margin: 0 auto;">
-    <div id="rsvp-search-container" class="rsvp-card">
-    <img src="flower.png" alt="Floral Top" style="position: absolute; top: -15px; left: 0; width: 100%; height: auto; transform: rotate(180deg) scale(1.05); pointer-events: none; z-index: 0;">
-    <h2 style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: 45px; letter-spacing: 8px; color: #043927; margin-bottom: 15px;">RSVP</h2>
-    <p style="font-family: 'Montserrat'; font-size: 11px; margin-bottom: 20px; letter-spacing: 2px; color: #666;">
-        ENTER YOUR FULL NAME TO FIND YOUR INVITATION
-    </p>
+<section id="rsvp" style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 20px; background: url('1.jpg') center/cover no-repeat; text-align: center;">
     
-    <input type="text" 
-           id="search-name-input" 
-           placeholder="Full Name" 
-           onkeydown="if(event.key === 'Enter') findInvitation()"
-           style="width: 100%; padding: 12px; border: 1px solid #d4af37; border-radius: 4px; margin-bottom: 15px; text-align: center; font-family: 'Montserrat';">
-    
-    <button onclick="findInvitation()" id="search-btn">Find My Invitation</button>
-    
-    <p id="search-error" style="color: #c0392b; font-size: 12px; margin-top: 10px; display: none; font-family: 'Montserrat';">
-        Name not found. Please check your spelling or contact the couple.
-    </p>
-</div>
+    <div class="reveal-on-scroll" style="width: 100%; max-width: 500px; margin: 0 auto; position: relative;">
+        
+        <div style="background: rgba(255, 255, 255, 0.95); padding: 60px 30px; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1px solid #d4af37; position: relative; overflow: hidden;">
+            
+            <img src="flower.png" alt="Floral Top" style="position: absolute; top: -20px; left: 0; width: 100%; height: auto; transform: rotate(180deg) scale(1.05); pointer-events: none; z-index: 0; opacity: 0.5;">
+            
+            <div style="position: relative; z-index: 2;">
+                <h2 style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(35px, 8vw, 45px); letter-spacing: 8px; color: #043927; margin: 0 0 15px 0;">RSVP</h2>
+                
+                <div style="width: 40px; height: 1.5px; background: #d4af37; margin: 0 auto 20px auto;"></div>
+                
+                <p style="font-family: 'Georgia', serif; font-size: 16px; color: #4a4a4a; font-style: italic; margin-bottom: 10px;">
+                    Kindly respond on or before
+                </p>
+                
+                <p id="config-rsvp-deadline" style="font-family: 'Montserrat', sans-serif; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #043927; font-weight: 800; margin-bottom: 40px;">
+                    October 1st, 2027
+                </p>
 
-        <div id="rsvp-form-container" class="hidden"></div>
-
-        <div id="rsvp-success-container" class="hidden">
-            <div class="rsvp-card">
-            <img src="flower.png" alt="Floral Top" style="position: absolute; top: -15px; left: 0; width: 100%; height: auto; transform: rotate(180deg) scale(1.05); pointer-events: none; z-index: 0;">
-                <h2 style="font-size: 2.5rem; color: var(--accent);">Thank you!</h2>
-                <p id="success-message" style="font-family: 'Montserrat'; margin-bottom: 20px;"></p>
-                <div style="border-top: 1px solid #eee; padding-top: 20px;">
-                    <p style="font-size: 11px; color: #888; margin-bottom: 15px;">Need to RSVP for someone else?</p>
-                    <button onclick="resetRSVP()" style="background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 8px 15px; font-size: 10px;">Search for Another Guest</button>
-                </div>
+                <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" style="display: inline-block; background-color: #043927; color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; padding: 16px 35px; text-decoration: none; border: 1px solid #043927; border-radius: 3px; box-shadow: 0 4px 15px rgba(4, 57, 39, 0.2);">
+                    Click Here to RSVP
+                </a>
             </div>
+            
         </div>
-
     </div>
 </section>
-
 
 
 
