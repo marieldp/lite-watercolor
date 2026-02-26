@@ -59,6 +59,7 @@
 /* 2. Style the individual letters (The fix you asked about) */
 #hero-names span {
     display: inline-block;
+    white-space: pre;      /* <--- THIS IS THE FIX: It forces spaces to exist */
     padding: 10px 0;    /* Gives cursive loops room */
     margin-top: -10px;  /* Corrects the alignment from the padding */
     color: var(--landing-hero); /* This ensures it uses your CLEAN white/gold */
@@ -617,7 +618,7 @@ to { opacity: 1; }
 <h1 style="font-family: 'Great Vibes', cursive; font-size: clamp(50px, 8vw, 100px); color: var(--landing-hero); margin: 0; line-height: 1.2;">
     <div id="hero-names" class="typewriter-reveal" style="max-width: fit-content; margin: 0 auto;">
         <span id="config-bride-1">Mariel</span> 
-        <span style="font-family: 'Georgia', serif; font-size: 0.4em; letter-spacing: 5px; color: var(--pink); vertical-align: middle;">&</span> 
+        <span style="font-family: 'Georgia', serif; font-size: 0.4em; letter-spacing: 5px; color: var(--pink); vertical-align: middle;"> & </span> 
         <span id="config-groom-1">Jasper</span>
     </div>
 </h1>
