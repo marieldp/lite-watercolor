@@ -22,8 +22,33 @@
     --basictext: #000000;
 }
 
+/* =========================================
+ TEXT ANIMATION STYLES
+ ========================================= */
+ /* The Typewriter Effect */
+.typewriter {
+  display: inline-block;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid var(--gold); /* The typing cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; 
+  letter-spacing: .15em; 
+  animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .75s step-end infinite;
+}
 
-  
+/* The typing motion */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor blinking */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--gold); }
+} 
 .envelope-glow {
 position: absolute;
 top: 40%; left: 50%;
@@ -560,9 +585,11 @@ to { opacity: 1; }
 <section id="landing-hero" style="position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 5svh;">
 <div class="hero-content" style="position: relative; text-align: center; z-index: 2; max-width: 90vw;">
 <h1 class="reveal-text delay-1" style="font-family: 'Great Vibes', cursive; font-size: clamp(50px, 8vw, 100px); color: var(--landing-hero); margin: 0; line-height: 1.1; text-shadow: 1px 2px 4px rgba(0,0,0,0.5);">
-<span id="config-bride-1">Mariel</span> 
-<span style="font-family: 'Georgia', serif; font-size: 0.4em; letter-spacing: 5px; color: var(--pink); vertical-align: middle;">&</span> 
-<span id="config-groom-1">Jasper</span>
+<div class="typewriter">
+    <span id="config-bride-1">Mariel</span> 
+    <span style="font-family: 'Georgia', serif; font-size: 0.4em; letter-spacing: 5px; color: var(--pink); vertical-align: middle;">&</span> 
+    <span id="config-groom-1">Jasper</span>
+</div>
 </h1>
 
 <div class="reveal-text delay-2" style="width: 80px; height: 1px; background: var(--gold); margin: 15px auto;"></div>
