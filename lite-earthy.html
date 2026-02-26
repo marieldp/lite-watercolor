@@ -28,35 +28,26 @@
 /* Elegant Reveal Animation */
 .typewriter-reveal {
     display: inline-block;
-    position: relative;
-    /* We use a 'white' mask to reveal the text */
-    /* This ensures we don't clip the top or bottom at all */
-    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 0%, transparent 0%);
-    mask-image: linear-gradient(to right, #000 0%, #000 0%, transparent 0%);
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    
-    /* This is the fix for the clipping: */
-    padding: 0.2em 0; 
-    overflow: visible !important; 
     white-space: nowrap;
+    position: relative;
+    /* This is the magic: it hides the text horizontally without touching the vertical space */
+    clip-path: inset(-20px 100% -20px 0); 
+    transition: none;
+    /* Bring the names back together */
+    line-height: 1.1; 
+    /* Essential: allow the 'M' and 'J' to stick out of the box */
+    overflow: visible !important; 
 }
 
 .start-typing {
-    animation: luxurious-reveal 4s linear forwards;
+    animation: sharp-reveal 4s linear forwards;
 }
 
-@keyframes luxurious-reveal {
-    0% {
-        -webkit-mask-image: linear-gradient(to right, #000 0%, transparent 0%);
-        mask-image: linear-gradient(to right, #000 0%, transparent 0%);
-    }
-    100% {
-        -webkit-mask-image: linear-gradient(to right, #000 100%, transparent 0%);
-        mask-image: linear-gradient(to right, #000 100%, transparent 0%);
-    }
+@keyframes sharp-reveal {
+    /* The -20px values ensure the top and bottom are NEVER clipped */
+    0% { clip-path: inset(-20px 100% -20px 0); }
+    100% { clip-path: inset(-20px 0% -20px 0); }
 }
-
 /* Remove the cursor/blink entirely for a cleaner look */ 
 
     
@@ -595,12 +586,12 @@ to { opacity: 1; }
 
 <section id="landing-hero" style="position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 5svh;">
 <div class="hero-content" style="position: relative; text-align: center; z-index: 2; max-width: 90vw;">
-<h1 style="font-family: 'Great Vibes', cursive; font-size: clamp(50px, 8vw, 100px); color: var(--landing-hero); margin: 0; line-height: 1.6; overflow: visible !important;">
+<h1 style="font-family: 'Great Vibes', cursive; font-size: clamp(50px, 8vw, 100px); color: var(--landing-hero); margin: 0; line-height: 1.1; overflow: visible !important;">
     <div id="hero-names" class="typewriter-reveal">
-    <span id="config-bride-1">Mariel</span> 
-    <span style="font-family: 'Georgia', serif; font-size: 0.4em; letter-spacing: 5px; color: var(--pink); vertical-align: middle;">&</span> 
-    <span id="config-groom-1">Jasper</span>
-</div>
+        <span id="config-bride-1">Mariel</span> 
+        <span style="font-family: 'Georgia', serif; font-size: 0.4em; letter-spacing: 5px; color: var(--pink); vertical-align: middle;">&</span> 
+        <span id="config-groom-1">Jasper</span>
+    </div>
 </h1>
 
 <div class="reveal-text delay-2" style="width: 80px; height: 1px; background: var(--gold); margin: 15px auto;"></div>
