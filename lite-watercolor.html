@@ -1154,7 +1154,8 @@ document.getElementById('seal').style.pointerEvents = "none";
 
 // 3. START THE OPENING ANIMATION
 wrapper.classList.add('open');
-
+const slideshow = document.querySelector('.bg-slideshow');
+if (slideshow) slideshow.classList.add('start-slideshow');
 
 // 4. EXIT TRANSITION
 setTimeout(() => {
