@@ -61,7 +61,7 @@ z-index: 9999 !important;
 width: 50px !important;
 height: 50px !important;
 border-radius: 50% !important;
-border: 1.5px solid #d4af37 !important;
+border: 1.5px solid var(--gold) !important;
 cursor: pointer !important;
 display: none; /* JS makes this flex when opening */
 align-items: center !important;
@@ -76,22 +76,22 @@ pointer-events: none;
 transition: opacity 0.5s ease, background-color 0.4s ease !important;
 
 /* Pink Background for Paused */
-background-color: #f4cfe0 !important; 
+background-color: var(--pink) !important; 
 }
 
 /* Green Icon for Paused */
 #musicBtn svg path {
-fill: #043927 !important; 
+fill: var(--accent) !important; 
 transition: fill 0.4s ease !important;
 }
 
 /* --- PLAYING STATE (Green Background, Gold Icon) --- */
 #musicBtn.playing {
-background-color: #043927 !important; /* Green Background */
+background-color: var(--accent) !important; /* Green Background */
 }
 
 #musicBtn.playing svg path {
-fill: #d4af37 !important; /* Gold Icon */
+fill: var(--gold) !important; /* Gold Icon */
 }
 
 /* PULSING ANIMATION (Only the Icon) */
@@ -452,7 +452,7 @@ font-size: 1.2rem;          /* Larger for impact */
 font-weight: 700;          /* Bold enough to be seen */
 font-style: italic;        /* Italics add that 'Invitation' vibe */
 letter-spacing: 2px;       /* Tighter spacing for serifs looks better */
-color: #043927;            /* Matching your Emerald Green theme */
+color: var(--accent);            /* Matching your Emerald Green theme */
 
 opacity: .9; 
 pointer-events: none;
@@ -554,59 +554,59 @@ to { opacity: 1; }
 
 <section id="landing-hero" style="position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 5svh;">
 <div class="hero-content" style="position: relative; text-align: center; z-index: 2; max-width: 90vw;">
-<h1 class="reveal-text delay-1" style="font-family: 'Great Vibes', cursive; font-size: clamp(50px, 8vw, 100px); color: #d4af37; margin: 0; line-height: 1.1; text-shadow: 2px 2px 12px rgba(0,0,0,0.6);">
+<h1 class="reveal-text delay-1" style="font-family: 'Great Vibes', cursive; font-size: clamp(50px, 8vw, 100px); color: var(--gold); margin: 0; line-height: 1.1; text-shadow: 2px 2px 12px rgba(0,0,0,0.6);">
 <span id="config-bride-1">Mariel</span> 
-<span style="font-family: 'Georgia', serif; font-size: 0.4em; letter-spacing: 5px; color: #f4cfe0; vertical-align: middle;">&</span> 
+<span style="font-family: 'Georgia', serif; font-size: 0.4em; letter-spacing: 5px; color: var(--pink); vertical-align: middle;">&</span> 
 <span id="config-groom-1">Jasper</span>
 </h1>
 
-<div class="reveal-text delay-2" style="width: 80px; height: 1px; background: #d4af37; margin: 15px auto;"></div>
+<div class="reveal-text delay-2" style="width: 80px; height: 1px; background: var(--gold); margin: 15px auto;"></div>
 
 <p id="config-date-1" class="reveal-text delay-2 ui-wedding-date" style="font-family: 'Georgia', serif; letter-spacing: 4px; font-size: 14px; text-transform: uppercase; color: #fff; margin: 5px 0;">
 November 6, 2027
 </p>
 
-<p class="reveal-text delay-3" style="font-family: 'Georgia', serif; font-style: italic; color: #f4cfe0; font-size: 14px; margin: 0;">
+<p class="reveal-text delay-3" style="font-family: 'Georgia', serif; font-style: italic; color: var(--pink); font-size: 14px; margin: 0;">
 Save the Date
 </p>
 
 
 </div>
 
-<div style="position: absolute; bottom: 10dvh; right: 20px; text-align: right; z-index: 9999; color: #d4af37; text-transform: uppercase; font-family: 'Georgia', serif;">
+<div style="position: absolute; bottom: 10dvh; right: 20px; text-align: right; z-index: 9999; color: var(--gold); text-transform: uppercase; font-family: 'Georgia', serif;">
 <div style="font-size: 14px; letter-spacing: 3px; font-weight: bold; text-shadow: 2px 2px 3px rgba(0,0,0,1), -1px -1px 2px rgba(0,0,0,1);">
 Scroll to RSVP <span style="display:block; font-size: 28px; margin-top: 2px; animation: bounce 2s infinite;">↓</span>
 </div>
 </div>
 </section>
 
-<section id="formal-invitation" class="paper-texture" style="padding: 100px 20px; background-color: #fdf0f5; text-align: center; position: relative; z-index: 10; margin-top: -1px; overflow: hidden;">
+<section id="formal-invitation" class="paper-texture" style="padding: 100px 20px; background-color: var(--paper); text-align: center; position: relative; z-index: 10; margin-top: -1px; overflow: hidden;">
 <div class="reveal-on-scroll" style="max-width: 750px; margin: 0 auto; position: relative;">
-<div style="position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; background-color: #043927; border: 1px solid #d4af37; border-radius: 2px; z-index: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.2);"></div>
-<div style="background: #ffffff; border: 1px solid #d4af37; padding: 15px; position: relative; z-index: 1; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-<div style="border: 1.5px solid #d4af37; padding: 70px 40px; position: relative;">
-<div style="position: absolute; top: 12px; left: 12px; width: 30px; height: 30px; border-top: 2px solid #d4af37; border-left: 2px solid #d4af37;"></div>
-<div style="position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-top: 2px solid #d4af37; border-right: 2px solid #d4af37;"></div>
+<div style="position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; background-color: var(--accent); border: 1px solid var(--gold); border-radius: 2px; z-index: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.2);"></div>
+<div style="background: #ffffff; border: 1px solid var(--gold); padding: 15px; position: relative; z-index: 1; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+<div style="border: 1.5px solid var(--gold); padding: 70px 40px; position: relative;">
+<div style="position: absolute; top: 12px; left: 12px; width: 30px; height: 30px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold);"></div>
+<div style="position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold);"></div>
 
-<p style="font-family: 'Georgia', serif; letter-spacing: 5px; font-size: 11px; text-transform: uppercase; color: #d4af37; margin-bottom: 35px; font-weight: 700;">Together with their families</p>
+<p style="font-family: 'Georgia', serif; letter-spacing: 5px; font-size: 11px; text-transform: uppercase; color: var(--gold); margin-bottom: 35px; font-weight: 700;">Together with their families</p>
 
-<h2 style="font-family: 'Great Vibes', cursive; font-size: clamp(55px, 12vw, 95px); color: #043927; margin: 0; font-weight: 400; line-height: 1.1;">
+<h2 style="font-family: 'Great Vibes', cursive; font-size: clamp(55px, 12vw, 95px); color: var(--accent); margin: 0; font-weight: 400; line-height: 1.1;">
 <span id="config-bride-2">Mariel</span> & <span id="config-groom-2">Jasper</span>
 </h2>
 
-<div style="margin: 35px 0; color: #f4cfe0; font-size: 35px; line-height: 1;">❦</div>
+<div style="margin: 35px 0; color: var(--pink); font-size: 35px; line-height: 1;">❦</div>
 
-<p style="font-family: 'Georgia', serif; font-size: 19px; line-height: 2.0; color: #043927; font-style: italic; max-width: 80%; margin: 0 auto;">
+<p style="font-family: 'Georgia', serif; font-size: 19px; line-height: 2.0; color: var(--accent); font-style: italic; max-width: 80%; margin: 0 auto;">
 request the honor of your presence as they exchange marriage vows and celebrate the beginning of their life together
 </p>
 
-<div style="margin-top: 55px; padding-top: 35px; border-top: 1px solid #f4cfe0; display: inline-block; width: 100%;">
-<p style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; color: #d4af37; margin: 0;">Saturday</p>
-<p id="config-date-2" style="font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 36px); margin: 15px 0; color: #043927; letter-spacing: 4px; font-weight: 700;">NOVEMBER 06, 2027</p>
-<p id="config-time-1" style="font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; color: #d4af37; margin: 0;">At Two O'Clock in the Afternoon</p>
+<div style="margin-top: 55px; padding-top: 35px; border-top: 1px solid var(--pink); display: inline-block; width: 100%;">
+<p style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; color: var(--gold); margin: 0;">Saturday</p>
+<p id="config-date-2" style="font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 36px); margin: 15px 0; color: var(--accent); letter-spacing: 4px; font-weight: 700;">NOVEMBER 06, 2027</p>
+<p id="config-time-1" style="font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; color: var(--gold); margin: 0;">At Two O'Clock in the Afternoon</p>
 </div>
-<div style="position: absolute; bottom: 12px; left: 12px; width: 30px; height: 30px; border-bottom: 2px solid #d4af37; border-left: 2px solid #d4af37;"></div>
-<div style="position: absolute; bottom: 12px; right: 12px; width: 30px; height: 30px; border-bottom: 2px solid #d4af37; border-right: 2px solid #d4af37;"></div>
+<div style="position: absolute; bottom: 12px; left: 12px; width: 30px; height: 30px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold);"></div>
+<div style="position: absolute; bottom: 12px; right: 12px; width: 30px; height: 30px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold);"></div>
 </div>
 </div>
 </div>
@@ -617,31 +617,31 @@ request the honor of your presence as they exchange marriage vows and celebrate 
 <section id="celebration" style="padding: 50px 20px 100px 20px; background-color: #ffff; text-align: center;">
 <div class="reveal-on-scroll" style="max-width: 1000px; margin: 0 auto;">
 
-<h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(45px, 8vw, 60px); color: #043927; margin-bottom: 60px;">The Celebration</h2>
+<h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(45px, 8vw, 60px); color: var(--accent); margin-bottom: 60px;">The Celebration</h2>
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 80px 40px; align-items: stretch;">
 
 <div style="position: relative; display: flex; flex-direction: column;">
-<div style="position: absolute; top: 15px; left: 15px; right: -15px; bottom: -15px; background-color: #043927; border: 1px solid #d4af37; border-radius: 2px; z-index: 0;"></div>
+<div style="position: absolute; top: 15px; left: 15px; right: -15px; bottom: -15px; background-color: var(--accent); border: 1px solid var(--gold); border-radius: 2px; z-index: 0;"></div>
 
-<div style="background: #ffffff; border: 1px solid #d4af37; padding: 12px; position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%;">
+<div style="background: #ffffff; border: 1px solid var(--gold); padding: 12px; position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%;">
 
-<img src="church1.jpg" alt="The Church" style="width: 100%; height: 280px; object-fit: cover; display: block; border: 1px solid #f4cfe0;">
+<img src="church1.jpg" alt="The Church" style="width: 100%; height: 280px; object-fit: cover; display: block; border: 1px solid var(--pink);">
 
 <div style="padding: 30px 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
 
 <div>
-<span style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">The Ceremony</span>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700;">The Ceremony</span>
 
 <div style="min-height: 80px; display: flex; align-items: center; justify-content: center;">
-<h3 id="config-church-name" style="font-family: 'Playfair Display', serif; font-size: 24px; color: #043927; margin: 0; line-height: 1.2;">Santuario de San Antonio Parish</h3> 
+<h3 id="config-church-name" style="font-family: 'Playfair Display', serif; font-size: 24px; color: var(--accent); margin: 0; line-height: 1.2;">Santuario de San Antonio Parish</h3> 
 </div>
 
-<p id="config-church-time" style="font-family: 'Montserrat', sans-serif; font-size: 13px; color: #043927; letter-spacing: 1px; font-weight: 600; text-transform: uppercase; margin-bottom: 25px;">
+<p id="config-church-time" style="font-family: 'Montserrat', sans-serif; font-size: 13px; color: var(--accent); letter-spacing: 1px; font-weight: 600; text-transform: uppercase; margin-bottom: 25px;">
 1:00 PM IN THE AFTERNOON
 </p>
 
-<p id="config-church-address" style="font-family: 'Georgia', serif; font-size: 15px; color: #043927; font-style: italic; margin-bottom: 25px;">
+<p id="config-church-address" style="font-family: 'Georgia', serif; font-size: 15px; color: var(--accent); font-style: italic; margin-bottom: 25px;">
 3117 McKinley Rd, Forbes Park, Makati City, 1220 Metro Manila
 </p>
 </div>
@@ -651,33 +651,33 @@ request the honor of your presence as they exchange marriage vows and celebrate 
 </div>
 
 <div style="position: relative; display: flex; flex-direction: column;">
-<div style="position: absolute; top: 15px; left: 15px; right: -15px; bottom: -15px; background-color: #043927; border: 1px solid #d4af37; border-radius: 2px; z-index: 0;"></div>
+<div style="position: absolute; top: 15px; left: 15px; right: -15px; bottom: -15px; background-color: var(--accent); border: 1px solid var(--gold); border-radius: 2px; z-index: 0;"></div>
 
-<div style="background: #ffffff; border: 1px solid #d4af37; padding: 12px; position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%;">
+<div style="background: #ffffff; border: 1px solid var(--gold); padding: 12px; position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%;">
 
-<img src="bl.jpeg" alt="The Reception" style="width: 100%; height: 280px; object-fit: cover; display: block; border: 1px solid #f4cfe0;">
+<img src="bl.jpeg" alt="The Reception" style="width: 100%; height: 280px; object-fit: cover; display: block; border: 1px solid var(--pink);">
 
 <div style="padding: 30px 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
 
 <div>
-<span style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">The Reception</span>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700;">The Reception</span>
 
 <div style="min-height: 80px; display: flex; align-items: center; justify-content: center;">
-<h3 style="font-family: 'Playfair Display', serif; font-size: 24px; color: #043927; margin: 0; line-height: 1.2;">
+<h3 style="font-family: 'Playfair Display', serif; font-size: 24px; color: var(--accent); margin: 0; line-height: 1.2;">
 <span id="config-reception-name">The Blue Leaf Mckinley</span><br>
 <span id="config-reception-sub" style="font-size: 0.8em; font-weight: 400;">Banyan Pavillion</span>
 </h3>
 </div>
 
-<p id="config-reception-time" style="font-family: 'Montserrat', sans-serif; font-size: 13px; color: #043927; letter-spacing: 1px; font-weight: 600; text-transform: uppercase; margin-bottom: 25px;">
+<p id="config-reception-time" style="font-family: 'Montserrat', sans-serif; font-size: 13px; color: var(--accent); letter-spacing: 1px; font-weight: 600; text-transform: uppercase; margin-bottom: 25px;">
 4:00 IN THE AFTERNOON
 </p>
 
-<p id="config-reception-address" style="font-family: 'Georgia', serif; font-size: 15px; color: #043927; font-style: italic; margin-bottom: 15px;">
+<p id="config-reception-address" style="font-family: 'Georgia', serif; font-size: 15px; color: var(--accent); font-style: italic; margin-bottom: 15px;">
 100 Park Avenue, McKinley Hill Village, Taguig, 1633 Metro Manila
 </p>
 
-<p style="font-family: 'Montserrat', sans-serif; font-size: 10px; color: #d4af37; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 25px;">
+<p style="font-family: 'Montserrat', sans-serif; font-size: 10px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 25px;">
 Valet Parking Available
 </p>
 </div>
@@ -692,15 +692,15 @@ Valet Parking Available
 
 
 
-<section id="dress-code" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; background-color: #043927; padding: 60px 20px;">
+<section id="dress-code" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; background-color: var(--accent); padding: 60px 20px;">
 
 <div class="reveal-on-scroll" style="width: 100%; max-width: 600px; background: #ffffff; padding: 70px 30px; box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5); border-radius: 4px; text-align: center;">
 
-<h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(45px, 8vw, 65px); color: #043927; margin: 0 0 40px 0; line-height: 1;">Dress Code</h2>
+<h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(45px, 8vw, 65px); color: var(--accent); margin: 0 0 40px 0; line-height: 1;">Dress Code</h2>
 
 <div style="margin-bottom: 60px;">
 <div style="margin-bottom: 35px;">
-<p style="font-family: 'Montserrat', sans-serif; font-size: 16px; letter-spacing: 4px; text-transform: uppercase; color: #043927; font-weight: 800; margin: 0 0 10px 0;">
+<p style="font-family: 'Montserrat', sans-serif; font-size: 16px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); font-weight: 800; margin: 0 0 10px 0;">
 Formal Attire
 </p>
 <p style="font-family: 'Georgia', serif; font-size: 15px; color: #666; margin: 0; font-style: italic;">
@@ -708,10 +708,10 @@ Standard for all guests
 </p>
 </div>
 
-<div style="width: 40px; height: 1px; background: #d4af37; margin: 0 auto 35px auto;"></div>
+<div style="width: 40px; height: 1px; background: var(--gold); margin: 0 auto 35px auto;"></div>
 
 <div style="margin-bottom: 20px;">
-<p style="font-family: 'Montserrat', sans-serif; font-size: 16px; letter-spacing: 4px; text-transform: uppercase; color: #043927; font-weight: 800; margin: 0 0 10px 0;">
+<p style="font-family: 'Montserrat', sans-serif; font-size: 16px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); font-weight: 800; margin: 0 0 10px 0;">
 For Entourage
 </p>
 <p style="font-family: 'Georgia', serif; font-size: 15px; color: #666; margin: 0; font-style: italic;">
@@ -721,21 +721,21 @@ Barong Tagalog & Long Gown
 </div>
 
 <div style="border-top: 1px solid #f0f0f0; padding-top: 45px;">
-<p style="font-family: 'Montserrat', sans-serif; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #043927; font-weight: 900; margin-bottom: 30px;">Our Celebration Colors</p>
+<p style="font-family: 'Montserrat', sans-serif; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 900; margin-bottom: 30px;">Our Celebration Colors</p>
 
 <div style="display: flex; flex-wrap: nowrap; justify-content: center; gap: 20px;">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-<div style="width: 50px; height: 50px; background: #043927; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
-<span style="font-size: 9px; font-family: 'Montserrat', sans-serif; color: #043927; font-weight: 700; letter-spacing: 1px;">EMERALD</span>
+<div style="width: 50px; height: 50px; background: var(--accent); border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+<span style="font-size: 9px; font-family: 'Montserrat', sans-serif; color: var(--accent); font-weight: 700; letter-spacing: 1px;">EMERALD</span>
 </div>
 
 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-<div style="width: 50px; height: 50px; background: #F4CFE0; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+<div style="width: 50px; height: 50px; background: var(--pink); border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
 <span style="font-size: 9px; font-family: 'Montserrat', sans-serif; color: #999; font-weight: 700; letter-spacing: 1px;">ROSE</span>
 </div>
 
 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-<div style="width: 50px; height: 50px; background: #d4af37; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+<div style="width: 50px; height: 50px; background: var(--gold); border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
 <span style="font-size: 9px; font-family: 'Montserrat', sans-serif; color: #999; font-weight: 700; letter-spacing: 1px;">GOLD</span>
 </div>
 
@@ -749,100 +749,100 @@ Barong Tagalog & Long Gown
 </div>
 </section>
 
-<section id="entourage" style="padding: 100px 15px; background-color: #fdf0f5; text-align: center;">
-<div class="reveal-on-scroll paper-texture" style="background-color: #fcfaf7; max-width: 900px; margin: 0 auto; padding: 0; border-radius: 4px; box-shadow: 0 30px 70px rgba(0,0,0,0.5); border: 1px solid #d4af37; overflow: hidden; position: relative;">
+<section id="entourage" style="padding: 100px 15px; background-color: var(--paper); text-align: center;">
+<div class="reveal-on-scroll paper-texture" style="background-color: #fcfaf7; max-width: 900px; margin: 0 auto; padding: 0; border-radius: 4px; box-shadow: 0 30px 70px rgba(0,0,0,0.5); border: 1px solid var(--gold); overflow: hidden; position: relative;">
 
 <img src="flower.png" alt="Floral Top" style="position: absolute; top: -4vw; left: 0; width: 100%; height: auto; display: block; transform: rotate(180deg) scale(1.05); z-index: 5; pointer-events: none;">
 
 <div style="padding: 160px 20px 140px 20px; position: relative; z-index: 2; word-wrap: break-word; overflow-wrap: break-word;">
 
 <div style="margin-bottom: 60px;">
-<h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(40px, 10vw, 65px); color: #d4af37; margin-bottom: 10px; line-height: 1.1;">The Entourage</h2>
-<div style="width: 50px; height: 1px; background: #d4af37; margin: 0 auto; opacity: 0.5;"></div>
+<h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(40px, 10vw, 65px); color: var(--gold); margin-bottom: 10px; line-height: 1.1;">The Entourage</h2>
+<div style="width: 50px; height: 1px; background: var(--gold); margin: 0 auto; opacity: 0.5;"></div>
 </div>
 
 <div style="margin-bottom: 60px;">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px;">
 <div>
-<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Parents of the Bride</span>
-<p id="Parents_Bride" style="font-family: 'Playfair Display', serif; font-size: clamp(16px, 4vw, 19px); color: #043927; line-height: 1.8; margin-top: 15px;"></p>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700;">Parents of the Bride</span>
+<p id="Parents_Bride" style="font-family: 'Playfair Display', serif; font-size: clamp(16px, 4vw, 19px); color: var(--accent); line-height: 1.8; margin-top: 15px;"></p>
 </div>
 <div>
-<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Parents of the Groom</span>
-<p id="Parents_Groom" style="font-family: 'Playfair Display', serif; font-size: clamp(16px, 4vw, 19px); color: #043927; line-height: 1.8; margin-top: 15px;"></p>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700;">Parents of the Groom</span>
+<p id="Parents_Groom" style="font-family: 'Playfair Display', serif; font-size: clamp(16px, 4vw, 19px); color: var(--accent); line-height: 1.8; margin-top: 15px;"></p>
 </div>
 </div>
 </div>
 
 <div style="margin-bottom: 60px;">
-<span style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #d4af37; font-weight: 700; display: block; margin-bottom: 25px;">Principal Sponsors</span>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 700; display: block; margin-bottom: 25px;">Principal Sponsors</span>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px;">
-<p id="Principal_Sponsors_Male" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; line-height: 2.0;"></p>
-<p id="Principal_Sponsors_Female" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; line-height: 2.0;"></p>
+<p id="Principal_Sponsors_Male" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: var(--accent); line-height: 2.0;"></p>
+<p id="Principal_Sponsors_Female" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: var(--accent); line-height: 2.0;"></p>
 </div>
 </div>
 
 <div style="margin-bottom: 60px;">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px;">
 <div>
-<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Maid of Honor</span>
-<p id="Maid_of_Honor" style="font-family: 'Playfair Display', serif; font-size: clamp(18px, 5vw, 20px); color: #043927; margin-top: 10px;"></p>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700;">Maid of Honor</span>
+<p id="Maid_of_Honor" style="font-family: 'Playfair Display', serif; font-size: clamp(18px, 5vw, 20px); color: var(--accent); margin-top: 10px;"></p>
 </div>
 <div>
-<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Best Man</span>
-<p id="Best_Man" style="font-family: 'Playfair Display', serif; font-size: clamp(18px, 5vw, 20px); color: #043927; margin-top: 10px;"></p>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700;">Best Man</span>
+<p id="Best_Man" style="font-family: 'Playfair Display', serif; font-size: clamp(18px, 5vw, 20px); color: var(--accent); margin-top: 10px;"></p>
 </div>
 </div>
 </div>
 
 <div style="margin-bottom: 60px;">
-<span style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #d4af37; font-weight: 700; display: block; margin-bottom: 30px;">Secondary Sponsors</span>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 700; display: block; margin-bottom: 30px;">Secondary Sponsors</span>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
-<div style="flex: 1 1 200px;"> <span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #d4af37; font-weight: 800;">To Light Our Path</span>
-<p id="Sponsors_Candle" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; margin-top: 5px;"></p>
+<div style="flex: 1 1 200px;"> <span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 800;">To Light Our Path</span>
+<p id="Sponsors_Candle" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: var(--accent); margin-top: 5px;"></p>
 </div>
 <div style="flex: 1 1 200px;">
-<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #d4af37; font-weight: 800;">To Clothe Us As One</span>
-<p id="Sponsors_Veil" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; margin-top: 5px;"></p>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 800;">To Clothe Us As One</span>
+<p id="Sponsors_Veil" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: var(--accent); margin-top: 5px;"></p>
 </div>
 <div style="flex: 1 1 200px;">
-<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #d4af37; font-weight: 800;">To Bind Us Together</span>
-<p id="Sponsors_Cord" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; margin-top: 5px;"></p>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 800;">To Bind Us Together</span>
+<p id="Sponsors_Cord" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: var(--accent); margin-top: 5px;"></p>
 </div>
 </div>
 </div>
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 60px;">
 <div>
-<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Bridesmaids</span>
-<p id="Bridesmaids" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; line-height: 2.0; margin-top: 15px;"></p>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700;">Bridesmaids</span>
+<p id="Bridesmaids" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: var(--accent); line-height: 2.0; margin-top: 15px;"></p>
 </div>
 <div>
-<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Groomsmen</span>
-<p id="Groomsmen" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; line-height: 2.0; margin-top: 15px;"></p>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700;">Groomsmen</span>
+<p id="Groomsmen" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: var(--accent); line-height: 2.0; margin-top: 15px;"></p>
 </div>
 </div>
 
 <div style="margin-bottom: 60px;">
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
 <div style="flex: 1 1 140px;">
-<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Ring Bearer</span>
-<p id="Ring_Bearer" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; margin-top: 10px;"></p>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700;">Ring Bearer</span>
+<p id="Ring_Bearer" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: var(--accent); margin-top: 10px;"></p>
 </div>
 <div style="flex: 1 1 140px;">
-<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Coin Bearer</span>
-<p id="Coin_Bearer" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; margin-top: 10px;"></p>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700;">Coin Bearer</span>
+<p id="Coin_Bearer" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: var(--accent); margin-top: 10px;"></p>
 </div>
 <div style="flex: 1 1 140px;">
-<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Bible Bearer</span>
-<p id="Bible_Bearer" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; margin-top: 10px;"></p>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700;">Bible Bearer</span>
+<p id="Bible_Bearer" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: var(--accent); margin-top: 10px;"></p>
 </div>
 </div>
 </div>
 
 <div style="margin-bottom: 20px;">
-<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Flower Girls</span>
-<p id="Flower_Girls" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; line-height: 2.0; margin-top: 15px;"></p>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700;">Flower Girls</span>
+<p id="Flower_Girls" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: var(--accent); line-height: 2.0; margin-top: 15px;"></p>
 </div>
 
 </div> 
@@ -856,24 +856,24 @@ Barong Tagalog & Long Gown
 
 <div class="reveal-on-scroll" style="width: 100%; max-width: 500px; margin: 0 auto; position: relative;">
 
-<div style="background: rgba(255, 255, 255, 0.95); padding: 90px 30px 60px 30px; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1px solid #d4af37; position: relative; overflow: hidden;">
+<div style="background: rgba(255, 255, 255, 0.95); padding: 90px 30px 60px 30px; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1px solid var(--gold); position: relative; overflow: hidden;">
 
 <img src="flower.png" alt="Floral Top" style="position: absolute; top: -20px; left: 0; width: 100%; height: auto; transform: rotate(180deg) scale(1.05); pointer-events: none; z-index: 0; opacity: 0.5;">
 
 <div style="position: relative; z-index: 2;">
-<h2 style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(35px, 8vw, 45px); letter-spacing: 8px; color: #043927; margin: 40px 0 15px 0;">RSVP</h2>
+<h2 style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(35px, 8vw, 45px); letter-spacing: 8px; color: var(--accent); margin: 40px 0 15px 0;">RSVP</h2>
 
-<div style="width: 40px; height: 1.5px; background: #d4af37; margin: 0 auto 20px auto;"></div>
+<div style="width: 40px; height: 1.5px; background: var(--gold); margin: 0 auto 20px auto;"></div>
 
 <p style="font-family: 'Georgia', serif; font-size: 16px; color: #4a4a4a; font-style: italic; margin-bottom: 10px;">
 Kindly respond on or before
 </p>
 
-<p id="config-rsvp-deadline" style="font-family: 'Montserrat', sans-serif; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #043927; font-weight: 800; margin-bottom: 40px;">
+<p id="config-rsvp-deadline" style="font-family: 'Montserrat', sans-serif; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 800; margin-bottom: 40px;">
 October 1st, 2027
 </p>
 
-<a href="https://forms.gle/8StBu4FZQnwJ8APP8" target="_blank" style="display: inline-block; background-color: #043927; color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; padding: 16px 35px; text-decoration: none; border: 1px solid #043927; border-radius: 3px; box-shadow: 0 4px 15px rgba(4, 57, 39, 0.2);">
+<a href="https://forms.gle/8StBu4FZQnwJ8APP8" target="_blank" style="display: inline-block; background-color: var(--accent); color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; padding: 16px 35px; text-decoration: none; border: 1px solid var(--accent); border-radius: 3px; box-shadow: 0 4px 15px rgba(4, 57, 39, 0.2);">
 Click Here to RSVP
 </a>
 </div>
