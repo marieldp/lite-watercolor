@@ -48,9 +48,12 @@
 /* 1. Hide the container initially */
 #hero-names {
     opacity: 0; 
-    display: inline-block;
-    line-height: 1.1; /* Keep names close together */
+    display: block;          /* Changed from inline-block to block */
+    margin: 0 auto;         /* Forces the block to the center */
+    text-align: center;     /* Centers the letters inside the block */
+    line-height: 1.1; 
     overflow: visible !important;
+    width: fit-content;     /* Keeps the "box" only as wide as the names */
 }
 
 /* 2. Style the individual letters (The fix you asked about) */
