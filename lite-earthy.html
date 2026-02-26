@@ -635,16 +635,14 @@ Save the Date
 
 </div>
 
-<div style="position: absolute; bottom: 10dvh; right: 20px; text-align: right; z-index: 9999; color: #d4af37; text-transform: uppercase; font-family: 'Georgia', serif;
-    /* THE HARDWARE ACCELERATION FIXES */
-    transform: translateZ(0); 
-    -webkit-font-smoothing: antialiased; 
-    backface-visibility: hidden;
-    will-change: transform;">
+<div style="position: absolute; bottom: 10dvh; right: 20px; text-align: right; z-index: 9999; color: var(--gold); text-transform: uppercase; font-family: 'Georgia', serif; 
+    /* THE NEW SAFE FIX */
+    isolation: isolate; 
+    -webkit-font-smoothing: antialiased;">
     
-    <div style="font-size: 14px; letter-spacing: 3px; font-weight: bold; text-shadow: 2px 2px 3px rgba(0,0,0,1), -1px -1px 2px rgba(0,0,0,1);">
+    <div style="font-size: 14px; letter-spacing: 3px; font-weight: bold; text-shadow: 2px 2px 3px rgba(0,0,0,0.99), -1px -1px 2px rgba(0,0,0,0.99) !important;">
         Scroll to RSVP 
-        <span style="display:block; font-size: 28px; margin-top: 2px; animation: bounce 2s infinite;">↓</span>
+        <span style="display:block; font-size: 28px; margin-top: 2px; animation: bounce 2s infinite; text-shadow: none; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.8));">↓</span>
     </div>
 </div>
 
