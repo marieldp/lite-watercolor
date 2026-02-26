@@ -45,11 +45,21 @@
     to { width: 100%; }
 }
 
-/* This is the crucial fix for the clipping */
+/* 1. Hide the container initially */
+#hero-names {
+    opacity: 0; 
+    display: inline-block;
+    line-height: 1.1; /* Keep names close together */
+    overflow: visible !important;
+}
+
+/* 2. Style the individual letters (The fix you asked about) */
 #hero-names span {
     display: inline-block;
-    padding: 10px 0;    /* Gives the loops room to breathe */
-    margin-top: -10px;  /* Pulls them back into alignment */
+    padding: 10px 0;    /* Gives cursive loops room */
+    margin-top: -10px;  /* Corrects the alignment from the padding */
+    color: var(--landing-hero); /* This ensures it uses your CLEAN white/gold */
+    text-shadow: 1px 2px 4px rgba(0,0,0,0.5); /* Keeps the depth we added */
 }
 /* Remove the cursor/blink entirely for a cleaner look */ 
 
@@ -1062,23 +1072,42 @@ wrapper.classList.add('open');
 
 // 4. EXIT TRANSITION
 setTimeout(() => {
-wrapper.classList.add('wrapper-exit');
-// Add this inside the setTimeout of your openInvitation function
-document.getElementById('hero-names').classList.add('start-typing');
+    wrapper.classList.add('wrapper-exit');
 
-// Unlock site scrolling
-document.body.classList.add('show-site');
-document.documentElement.classList.add('show-site'); 
+    // --- START NEW TYPEWRITER LOGIC ---
+    const heroNames = document.getElementById('hero-names');
+    if (heroNames) {
+        const text = heroNames.innerText;
+        heroNames.innerHTML = ''; // Clear the static text
+        heroNames.style.opacity = "1"; // Make the container visible
 
-window.scrollTo(0, 0); 
-window.dispatchEvent(new Event('scroll'));
+        // Break it into individual letters and type them
+        [...text].forEach((char, i) => {
+            const span = document.createElement('span');
+            span.textContent = char;
+            span.style.opacity = '0';
+            span.style.display = 'inline-block';
+            heroNames.appendChild(span);
 
-// Start the Music Button Scroll Tracker
-if (typeof setupMusicObserver === "function") {
-setupMusicObserver(); 
-}
-}, 310); 
-}
+            setTimeout(() => {
+                span.style.opacity = '1';
+                span.style.transition = 'opacity 0.1s ease'; // Tiny fade for each letter
+            }, i * 100); // 100ms delay per letter
+        });
+    }
+    // --- END NEW TYPEWRITER LOGIC ---
+
+    // Unlock site scrolling
+    document.body.classList.add('show-site');
+    document.documentElement.classList.add('show-site'); 
+
+    window.scrollTo(0, 0); 
+    window.dispatchEvent(new Event('scroll'));
+
+    if (typeof setupMusicObserver === "function") {
+        setupMusicObserver(); 
+    }
+}, 310);
 
 
 
