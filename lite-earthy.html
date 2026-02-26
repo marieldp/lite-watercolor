@@ -25,30 +25,30 @@
 /* =========================================
  TEXT ANIMATION STYLES
  ========================================= */
- /* The Typewriter Effect */
-.typewriter {
-  display: inline-block;
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid var(--gold); /* The typing cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; 
-  letter-spacing: .15em; 
-  animation: 
-    typing 3.5s steps(30, end),
-    blink-caret .75s step-end infinite;
+/* Elegant Reveal Animation */
+.typewriter-reveal {
+    display: inline-block;
+    position: relative;
+    /* This "mask" reveals the text from left to right */
+    mask-image: linear-gradient(to right, black 0%, black 0%, transparent 0%);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    transition: mask-image 0s; /* Stays hidden initially */
 }
 
-/* The typing motion */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+/* This class will be added by JavaScript when the envelope opens */
+.start-typing {
+    animation: sweep-reveal 3s ease-in-out forwards;
 }
 
-/* The typewriter cursor blinking */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: var(--gold); }
-} 
+@keyframes sweep-reveal {
+    0% { mask-image: linear-gradient(to right, black 0%, transparent 0%); }
+    100% { mask-image: linear-gradient(to right, black 100%, transparent 0%); }
+}
+
+/* Remove the cursor/blink entirely for a cleaner look */ 
+
+    
 .envelope-glow {
 position: absolute;
 top: 40%; left: 50%;
@@ -585,7 +585,7 @@ to { opacity: 1; }
 <section id="landing-hero" style="position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 5svh;">
 <div class="hero-content" style="position: relative; text-align: center; z-index: 2; max-width: 90vw;">
 <h1 class="reveal-text delay-1" style="font-family: 'Great Vibes', cursive; font-size: clamp(50px, 8vw, 100px); color: var(--landing-hero); margin: 0; line-height: 1.1; text-shadow: 1px 2px 4px rgba(0,0,0,0.5);">
-<div class="typewriter">
+<div id="hero-names" class="typewriter-reveal">
     <span id="config-bride-1">Mariel</span> 
     <span style="font-family: 'Georgia', serif; font-size: 0.4em; letter-spacing: 5px; color: var(--pink); vertical-align: middle;">&</span> 
     <span id="config-groom-1">Jasper</span>
@@ -1054,9 +1054,12 @@ document.getElementById('seal').style.pointerEvents = "none";
 // 3. START THE OPENING ANIMATION
 wrapper.classList.add('open');
 
+
 // 4. EXIT TRANSITION
 setTimeout(() => {
 wrapper.classList.add('wrapper-exit');
+// Add this inside the setTimeout of your openInvitation function
+document.getElementById('hero-names').classList.add('start-typing');
 
 // Unlock site scrolling
 document.body.classList.add('show-site');
