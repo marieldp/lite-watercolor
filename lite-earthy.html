@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M & J Wedding</title>
+<link rel="preload" as="image" href="1.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="6938.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="seal.png" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&family=Pinyon+Script&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.envelope-glow {
+position: absolute;
+top: 40%; left: 50%;
+width: 150px; height: 150px;
+/* A very soft, diffuse pure white */
+background: radial-gradient(circle, #ffffff 0%, rgba(255,255,255,0.9) 40%, rgba(255,255,255,0) 80%);
+filter: blur(30px); /* Massive blur removes any harsh edges */
+transform: translate(-50%, -50%) scale(0);
+opacity: 0;
+z-index: 2; 
+
+/* 1.5s makes it a slow, elegant wash instead of a flash */
+transition: transform 1.5s ease-in-out, opacity 1.5s ease;
+}
+
+.open .envelope-glow {
+opacity: 1;
+transform: translate(-50%, -50%) scale(12); 
+}
+@media screen and (max-width: 600px) {
+#envelope-label {
+bottom: 20% !important;
+font-size: 1.3rem;
+letter-spacing: 1px;
+}
+
+}
+
+/* =========================================
+  MUSIC BUTTON SECTION STYLES
+  ========================================= */
+#musicBtn {
+position: fixed !important;
+bottom: 25px !important;
+right: 25px !important;
+z-index: 9999 !important;
+width: 50px !important;
+height: 50px !important;
+border-radius: 50% !important;
+border: 1.5px solid #d4af37 !important;
+cursor: pointer !important;
+display: none; /* JS makes this flex when opening */
+align-items: center !important;
+justify-content: center !important;
+box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+
+display: flex !important;
+
+/* Fades in on scroll */
+opacity: 0; 
+pointer-events: none;
+transition: opacity 0.5s ease, background-color 0.4s ease !important;
+
+/* Pink Background for Paused */
+background-color: #f4cfe0 !important; 
+}
+
+/* Green Icon for Paused */
+#musicBtn svg path {
+fill: #043927 !important; 
+transition: fill 0.4s ease !important;
+}
+
+/* --- PLAYING STATE (Green Background, Gold Icon) --- */
+#musicBtn.playing {
+background-color: #043927 !important; /* Green Background */
+}
+
+#musicBtn.playing svg path {
+fill: #d4af37 !important; /* Gold Icon */
+}
+
+/* PULSING ANIMATION (Only the Icon) */
+#musicBtn.playing svg {
+animation: icon-pulse 1.2s infinite ease-in-out !important;
+transform-origin: center;
+}
+
+@keyframes icon-pulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.35); }
+100% { transform: scale(1); }
+}
+
+
+/* Your existing scroll container fix */
+#scroll-container {
+bottom: 90px !important; 
+right: 25px !important;
+}
+/* 1. Attire Photos (Desktop: 2 Columns) */
+.attire-grid {
+display: grid;
+grid-template-columns: 1fr 1fr; 
+gap: 40px 20px;
+text-align: center;
+margin-bottom: 50px;
+}
+
+/* 2. Celebration Colors (Desktop: 1 Horizontal Row) */
+.colors-grid {
+display: flex;
+flex-wrap: nowrap; /* Forces them onto a single line */
+justify-content: center;
+gap: 30px;
+margin-bottom: 25px;
+width: 100%;
+}
+
+.color-item {
+display: flex;
+flex-direction: column; /* Puts the text neatly under the circle */
+align-items: center;
+gap: 8px;
+}
+
+/* --- MOBILE RESPONSIVENESS (Phones & Tablets) --- */
+@media screen and (max-width: 768px) {
+/* Stack attire photos into 1 column */
+.attire-grid {
+grid-template-columns: 1fr !important; 
+gap: 50px !important;
+}
+
+/* Neatly wrap colors into a 2x2 grid */
+.colors-grid {
+display: grid !important;
+grid-template-columns: 1fr 1fr !important; 
+gap: 25px 15px !important;
+max-width: 300px;
+margin: 0 auto 25px auto;
+}
+
+#landing-hero::before {
+transform: translateZ(0); /* Hardware acceleration to stop flicker */
+}
+}
+
+
+
+
+
+#dress-code img {
+max-height: 250px !important; /* Makes images slightly larger on mobile */
+}
+
+/* 2. Aligns the Celebration Color Palette */
+#dress-code div[style*="flex-wrap: wrap"] {
+display: grid !important;
+grid-template-columns: 1fr 1fr !important; /* Neatly aligns circles 2x2 */
+gap: 30px 10px !important;
+justify-items: center;
+max-width: 300px;
+margin: 0 auto;
+}
+
+/* 3. Centers the text under each color circle */
+#dress-code div[style*="display: flex; align-items: center; gap: 12px"] {
+flex-direction: column !important; /* Puts label under the circle */
+text-align: center;
+gap: 8px !important;
+}
+
+/* =========================================
+  ENTOURAGE SECTION STYLES
+  ========================================= */
+/* Fix for the Entourage names cutting off */
+#entourage p {
+font-size: 16px !important;
+/* Line-height creates the vertical "margin" between stacked names */
+line-height: 1.8 !important; 
+font-weight: 400;
+margin-top: 5px !important;
+margin-bottom: 20px !important; /* Space between the ROLE and the next role */
+padding: 0 15px;
+display: block;
+letter-spacing: 0.5px;
+animation: fadeInName 0.8s ease forwards;
+}
+
+
+/* Optional: Shrink the 'The Entourage' header slightly for mobile */
+#entourage h2 {
+font-size: 42px !important;
+}
+
+
+/* 1. DEFAULT STATE: Locked for the Envelope */
+html {
+overflow-x: hidden;
+scrollbar-gutter: stable; 
+
+    overflow: hidden !important; 
+    height: 100vh !important;
+}
+
+body { 
+margin: 0; padding: 0; 
+background-color: #f4f1ea; /* Solid color only - No image here! */
+font-family: 'Montserrat', sans-serif; 
+color: var(--text); 
+overflow-x: hidden;
+
+    overflow: hidden !important; 
+    height: 100vh !important;
+}
+
+/* 2. OPEN STATE: Unlocked for the Website */
+body.show-site, html.show-site {
+overflow: visible !important; /* Changed from auto to visible */
+overflow-x: hidden !important; 
+height: auto !important;
+min-height: 100vh;
+    overflow-y: auto !important; 
+}
+
+#main-site {
+width: 100%;
+overflow-x: hidden !important;
+}
+
+#months, #days, #hours, #minutes, #seconds {
+display: inline-block;
+white-space: nowrap !important;
+hyphens: none !important;
+-webkit-hyphens: none !important;
+}
+
+
+
+
+
+/* Decorative Paper Texture */
+.paper-texture {
+background-color: #fcfaf7;
+background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png"); /* Subtle paper grain */
+}
+
+/* The Scroll Reveal Animation */
+.reveal-on-scroll {
+opacity: 0;
+transform: translateY(30px);
+transition: all 1.5s ease-out;
+}
+
+/* This class will be added by JavaScript when the guest scrolls to it */
+.reveal-on-scroll.is-visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* The 'Soft Glide' Animation */
+@keyframes fadeInUp {
+from {
+opacity: 0;
+transform: translateY(15px); /* Shorter distance = feels faster */
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+/* Apply this to the text elements */
+.reveal-text {
+opacity: 0;
+}
+
+.show-site .reveal-text {
+animation: fadeInUp 1.5s ease-out forwards;
+}
+.show-site .delay-1 { animation-delay: 0.1s; } /* Names pop in almost immediately */
+.show-site .delay-2 { animation-delay: 0.3s; } /* Date follows quickly */
+.show-site .delay-3 { animation-delay: 0.5s; } /* Save the Date finishes it off */
+
+@font-face {
+font-family: 'Arielle';
+src: url('https://fonts.cdnfonts.com/s/16288/Arielle.woff');
+font-weight: normal;
+font-style: normal;
+}
+:root { 
+--paper: #fcfaf7; --gold: #bfa17a; --text: #4a4a4a; --accent: #043927; --pink: #f4cfe0; 
+}
+
+
+#envelope-wrapper {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+display: flex; justify-content: center; align-items: center;
+z-index: 9999 !important; 
+
+/* This makes it see-through and blurs the website behind it */
+background-color: rgba(244, 241, 234, 0.3); 
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+
+transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.envelope {
+position: relative; width: 90vw; height: 60vw;
+max-width: 600px; max-height: 400px;
+z-index: 10 !important; perspective: 1500px; 
+}
+
+/* 1. BACKING */
+.envelope-back {
+position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+background: url('6938.jpg') center/cover no-repeat;
+z-index: 1 !important; filter: brightness(0.9);
+box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.envelope-pocket-main { 
+position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+z-index: 3 !important; background: url('6938.jpg') center/cover no-repeat;
+clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 100%, 0 100%);
+}
+
+.envelope-lines {
+position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+z-index: 4 !important; pointer-events: none;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L50,60 L100,0' fill='none' stroke='black' stroke-opacity='0.05' stroke-width='0.4'/%3E%3C/svg%3E");
+background-size: 100% 100%;
+}
+
+/* This makes sure it physically leaves the screen */
+#envelope-wrapper.wrapper-exit {
+opacity: 0 !important;
+visibility: hidden !important;
+pointer-events: none !important;
+transform: scale(1.05); /* Less movement, more of a smooth fade */
+
+/* Matches the 1.5s light expansion for a perfect crossfade */
+transition: opacity 1.5s ease, visibility 1.5s, transform 1.5s ease !important;
+}
+
+
+/* --- THE BALANCED NARROW BOTTOM FLAP --- */
+.bottom-flap {
+position: absolute; bottom: 0; left: 0; width: 100%; height: 43%; 
+z-index: 6; background: url('6938.jpg') center/cover no-repeat;
+clip-path: polygon(0 100%, 100% 100%, 55% 0, 45% 0);
+filter: brightness(0.98);
+}
+
+.bottom-flap-lines {
+position: absolute; bottom: 0; left: 0; width: 100%; height: 43%; 
+z-index: 7; pointer-events: none;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 L45,0 L55,0 L100,100' fill='none' stroke='black' stroke-opacity='0.08' stroke-width='0.4'/%3E%3C/svg%3E");
+background-size: 100% 100%;
+}
+/* 7. TOP FLAP CONTAINER */
+.flap-container {
+position: absolute; top: 0; left: 0; width: 100%; height: 60%;
+z-index: 10 !important; transform-origin: top; transform-style: preserve-3d;
+transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s;
+animation: flap-bob 4s ease-in-out infinite;
+filter: drop-shadow(0 5px 6px rgba(0,0,0,0.3));
+}
+
+
+.open .flap-container { 
+animation: none !important; 
+transform: rotateX(160deg); /* 160deg is the magic number! */
+z-index: 1 !important; 
+/* The z-index waits 0.5s before dropping behind the letter so it doesn't clip */
+transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.5s;
+}
+
+.top-flap {
+width: 100%; height: 100%;
+background: url('6938.jpg') center/cover no-repeat;
+clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* 8. THE SEAL (Always on top) */
+#seal {
+position: relative;
+transform: translate(-50%, -50%);
+width: 100%;
+}
+/* Pushes the seal behind the flap paper as it opens */
+.open .seal-bob-wrapper {
+z-index: -1 !important;
+transition: z-index 0s 0.4s !important; 
+}
+#seal img { width: 100%; display: block; }    
+.seal-bob-wrapper { 
+position: absolute; 
+top: 100%; /* Centers it perfectly on the bottom edge of the flap */
+left: 50%; 
+width: 18%; 
+min-width: 65px; 
+z-index: 100 !important; 
+/* Removed the bobbing animation because the whole flap bobs now */
+cursor: pointer; 
+}
+
+/* Animations & Utilities */
+@keyframes flap-bob { 
+0%, 100% { 
+transform: translateY(0); 
+} 
+50% { 
+/* Reduced from -8px to -3px for a barely-there breath */
+transform: translateY(-3px); 
+} 
+}    
+@keyframes seal-bob { 0%, 100% { transform: translate(-50%, -50%); } 
+50% { transform: translate(-50%, -53%); } /* Very slight nudge */ } 
+@keyframes elegantPulse {
+0%, 100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.4; }
+50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.8; }
+}
+
+
+/* --- THE GUEST LABEL (On top of the pocket) --- */
+#envelope-label {
+position: absolute;
+/* Nudging it down to sit perfectly in the lower half of the pocket */
+bottom: 15% !important; 
+left: 0;
+width: 100%;
+text-align: center;
+z-index: 100 !important; 
+
+/* New High-End Font Styling */
+font-family: 'Playfair Display', serif; /* Elegant Serif Font */
+font-size: 1.2rem;          /* Larger for impact */
+font-weight: 700;          /* Bold enough to be seen */
+font-style: italic;        /* Italics add that 'Invitation' vibe */
+letter-spacing: 2px;       /* Tighter spacing for serifs looks better */
+color: #043927;            /* Matching your Emerald Green theme */
+
+opacity: .9; 
+pointer-events: none;
+text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* Makes it pop against the paper */
+}
+
+/* Make sure this class is still working */
+#envelope-label.reveal-active {
+opacity: 1 !important;
+}
+/* 1. Make the envelope slightly taller on mobile to give more room */
+.envelope {
+width: 95vw;     /* Use almost full screen width */
+height: 70vw;    /* Make it taller (was 60vw) */
+}
+
+
+
+@keyframes bounce {
+0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+40% {transform: translateY(-5px);}
+60% {transform: translateY(-3px);}
+}
+
+
+/* Ensure the NEXT section starts exactly where the photo ends */
+#main-site section:nth-of-type(2) {
+position: relative;
+z-index: 10;
+margin-top: 0;
+}
+
+/* --- THE BULLETPROOF MOBILE HERO FIX --- */
+#main-site section:first-of-type,
+#landing-hero {
+height: 100svh !important; /* svh locks the height when Chrome bars move */
+width: 100% !important;
+position: relative !important; /* Anchors it to the page */
+overflow: hidden !important;
+clip-path: inset(0 0 0 0); /* The Guillotine that traps the image */
+background-color: #f4f1ea; /* Matches envelope fading */
+}
+
+/* This puts the photo BEHIND your text */
+#landing-hero::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+/* The word 'scroll' completely kills the iOS/Android jitter bug! */
+background: url('1.jpg') no-repeat center top / cover scroll !important;
+z-index: 0;
+}
+@keyframes fadeInImage {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+</style>
+</head>
+<body>
+
+<div id="envelope-wrapper">
+<div class="envelope">
+<div class="envelope-glow"></div>
+<div class="envelope-back" style="background-image: url('6938.jpg');"></div>
+
+<div class="internal-shadow"></div> 
+
+<div class="flap-container">
+<div class="top-flap" style="background-image: url('6938.jpg');"></div> 
+
+<div class="seal-bob-wrapper">
+<div id="seal" onclick="openInvitation()">
+<img src="seal.png" alt="Seal">
+</div>
+</div>
+</div>
+
+<div class="envelope-pocket-main" style="background-image: url('6938.jpg');"></div> 
+<div class="envelope-lines"></div> 
+<div class="bottom-flap" style="background-image: url('6938.jpg');"></div> 
+<div class="bottom-flap-lines"></div> 
+
+<div id="envelope-label">To our beloved Guest</div>
+</div>
+</div>
+<audio id="bg-music" loop><source src="bgm.mp3" id="config-audio" type="audio/mpeg"></audio>
+
+<button id="musicBtn" onclick="toggleMusic()">
+<svg viewBox="0 0 24 24" width="24" height="24">
+<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+</svg>
+</button>
+
+<div id="main-site">
+
+<section id="landing-hero" style="position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 5svh;">
+<div class="hero-content" style="position: relative; text-align: center; z-index: 2; max-width: 90vw;">
+<h1 class="reveal-text delay-1" style="font-family: 'Great Vibes', cursive; font-size: clamp(50px, 8vw, 100px); color: #d4af37; margin: 0; line-height: 1.1; text-shadow: 2px 2px 12px rgba(0,0,0,0.6);">
+<span id="config-bride-1">Mariel</span> 
+<span style="font-family: 'Georgia', serif; font-size: 0.4em; letter-spacing: 5px; color: #f4cfe0; vertical-align: middle;">&</span> 
+<span id="config-groom-1">Jasper</span>
+</h1>
+
+<div class="reveal-text delay-2" style="width: 80px; height: 1px; background: #d4af37; margin: 15px auto;"></div>
+
+<p id="config-date-1" class="reveal-text delay-2 ui-wedding-date" style="font-family: 'Georgia', serif; letter-spacing: 4px; font-size: 14px; text-transform: uppercase; color: #fff; margin: 5px 0;">
+November 6, 2027
+</p>
+
+<p class="reveal-text delay-3" style="font-family: 'Georgia', serif; font-style: italic; color: #f4cfe0; font-size: 14px; margin: 0;">
+Save the Date
+</p>
+
+
+</div>
+
+<div style="position: absolute; bottom: 10dvh; right: 20px; text-align: right; z-index: 9999; color: #d4af37; text-transform: uppercase; font-family: 'Georgia', serif;">
+<div style="font-size: 14px; letter-spacing: 3px; font-weight: bold; text-shadow: 2px 2px 3px rgba(0,0,0,1), -1px -1px 2px rgba(0,0,0,1);">
+Scroll to RSVP <span style="display:block; font-size: 28px; margin-top: 2px; animation: bounce 2s infinite;">↓</span>
+</div>
+</div>
+</section>
+
+<section id="formal-invitation" class="paper-texture" style="padding: 100px 20px; background-color: #fdf0f5; text-align: center; position: relative; z-index: 10; margin-top: -1px; overflow: hidden;">
+<div class="reveal-on-scroll" style="max-width: 750px; margin: 0 auto; position: relative;">
+<div style="position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; background-color: #043927; border: 1px solid #d4af37; border-radius: 2px; z-index: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.2);"></div>
+<div style="background: #ffffff; border: 1px solid #d4af37; padding: 15px; position: relative; z-index: 1; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+<div style="border: 1.5px solid #d4af37; padding: 70px 40px; position: relative;">
+<div style="position: absolute; top: 12px; left: 12px; width: 30px; height: 30px; border-top: 2px solid #d4af37; border-left: 2px solid #d4af37;"></div>
+<div style="position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-top: 2px solid #d4af37; border-right: 2px solid #d4af37;"></div>
+
+<p style="font-family: 'Georgia', serif; letter-spacing: 5px; font-size: 11px; text-transform: uppercase; color: #d4af37; margin-bottom: 35px; font-weight: 700;">Together with their families</p>
+
+<h2 style="font-family: 'Great Vibes', cursive; font-size: clamp(55px, 12vw, 95px); color: #043927; margin: 0; font-weight: 400; line-height: 1.1;">
+<span id="config-bride-2">Mariel</span> & <span id="config-groom-2">Jasper</span>
+</h2>
+
+<div style="margin: 35px 0; color: #f4cfe0; font-size: 35px; line-height: 1;">❦</div>
+
+<p style="font-family: 'Georgia', serif; font-size: 19px; line-height: 2.0; color: #043927; font-style: italic; max-width: 80%; margin: 0 auto;">
+request the honor of your presence as they exchange marriage vows and celebrate the beginning of their life together
+</p>
+
+<div style="margin-top: 55px; padding-top: 35px; border-top: 1px solid #f4cfe0; display: inline-block; width: 100%;">
+<p style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; color: #d4af37; margin: 0;">Saturday</p>
+<p id="config-date-2" style="font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 36px); margin: 15px 0; color: #043927; letter-spacing: 4px; font-weight: 700;">NOVEMBER 06, 2027</p>
+<p id="config-time-1" style="font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 6px; font-size: 14px; text-transform: uppercase; color: #d4af37; margin: 0;">At Two O'Clock in the Afternoon</p>
+</div>
+<div style="position: absolute; bottom: 12px; left: 12px; width: 30px; height: 30px; border-bottom: 2px solid #d4af37; border-left: 2px solid #d4af37;"></div>
+<div style="position: absolute; bottom: 12px; right: 12px; width: 30px; height: 30px; border-bottom: 2px solid #d4af37; border-right: 2px solid #d4af37;"></div>
+</div>
+</div>
+</div>
+
+</section>
+
+
+<section id="celebration" style="padding: 50px 20px 100px 20px; background-color: #ffff; text-align: center;">
+<div class="reveal-on-scroll" style="max-width: 1000px; margin: 0 auto;">
+
+<h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(45px, 8vw, 60px); color: #043927; margin-bottom: 60px;">The Celebration</h2>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 80px 40px; align-items: stretch;">
+
+<div style="position: relative; display: flex; flex-direction: column;">
+<div style="position: absolute; top: 15px; left: 15px; right: -15px; bottom: -15px; background-color: #043927; border: 1px solid #d4af37; border-radius: 2px; z-index: 0;"></div>
+
+<div style="background: #ffffff; border: 1px solid #d4af37; padding: 12px; position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%;">
+
+<img src="church1.jpg" alt="The Church" style="width: 100%; height: 280px; object-fit: cover; display: block; border: 1px solid #f4cfe0;">
+
+<div style="padding: 30px 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+
+<div>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">The Ceremony</span>
+
+<div style="min-height: 80px; display: flex; align-items: center; justify-content: center;">
+<h3 id="config-church-name" style="font-family: 'Playfair Display', serif; font-size: 24px; color: #043927; margin: 0; line-height: 1.2;">Santuario de San Antonio Parish</h3> 
+</div>
+
+<p id="config-church-time" style="font-family: 'Montserrat', sans-serif; font-size: 13px; color: #043927; letter-spacing: 1px; font-weight: 600; text-transform: uppercase; margin-bottom: 25px;">
+1:00 PM IN THE AFTERNOON
+</p>
+
+<p id="config-church-address" style="font-family: 'Georgia', serif; font-size: 15px; color: #043927; font-style: italic; margin-bottom: 25px;">
+3117 McKinley Rd, Forbes Park, Makati City, 1220 Metro Manila
+</p>
+</div>
+
+</div>
+</div>
+</div>
+
+<div style="position: relative; display: flex; flex-direction: column;">
+<div style="position: absolute; top: 15px; left: 15px; right: -15px; bottom: -15px; background-color: #043927; border: 1px solid #d4af37; border-radius: 2px; z-index: 0;"></div>
+
+<div style="background: #ffffff; border: 1px solid #d4af37; padding: 12px; position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%;">
+
+<img src="bl.jpeg" alt="The Reception" style="width: 100%; height: 280px; object-fit: cover; display: block; border: 1px solid #f4cfe0;">
+
+<div style="padding: 30px 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+
+<div>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">The Reception</span>
+
+<div style="min-height: 80px; display: flex; align-items: center; justify-content: center;">
+<h3 style="font-family: 'Playfair Display', serif; font-size: 24px; color: #043927; margin: 0; line-height: 1.2;">
+<span id="config-reception-name">The Blue Leaf Mckinley</span><br>
+<span id="config-reception-sub" style="font-size: 0.8em; font-weight: 400;">Banyan Pavillion</span>
+</h3>
+</div>
+
+<p id="config-reception-time" style="font-family: 'Montserrat', sans-serif; font-size: 13px; color: #043927; letter-spacing: 1px; font-weight: 600; text-transform: uppercase; margin-bottom: 25px;">
+4:00 IN THE AFTERNOON
+</p>
+
+<p id="config-reception-address" style="font-family: 'Georgia', serif; font-size: 15px; color: #043927; font-style: italic; margin-bottom: 15px;">
+100 Park Avenue, McKinley Hill Village, Taguig, 1633 Metro Manila
+</p>
+
+<p style="font-family: 'Montserrat', sans-serif; font-size: 10px; color: #d4af37; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 25px;">
+Valet Parking Available
+</p>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+
+<section id="dress-code" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; background-color: #043927; padding: 60px 20px;">
+
+<div class="reveal-on-scroll" style="width: 100%; max-width: 600px; background: #ffffff; padding: 70px 30px; box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5); border-radius: 4px; text-align: center;">
+
+<h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(45px, 8vw, 65px); color: #043927; margin: 0 0 40px 0; line-height: 1;">Dress Code</h2>
+
+<div style="margin-bottom: 60px;">
+<div style="margin-bottom: 35px;">
+<p style="font-family: 'Montserrat', sans-serif; font-size: 16px; letter-spacing: 4px; text-transform: uppercase; color: #043927; font-weight: 800; margin: 0 0 10px 0;">
+Formal Attire
+</p>
+<p style="font-family: 'Georgia', serif; font-size: 15px; color: #666; margin: 0; font-style: italic;">
+Standard for all guests
+</p>
+</div>
+
+<div style="width: 40px; height: 1px; background: #d4af37; margin: 0 auto 35px auto;"></div>
+
+<div style="margin-bottom: 20px;">
+<p style="font-family: 'Montserrat', sans-serif; font-size: 16px; letter-spacing: 4px; text-transform: uppercase; color: #043927; font-weight: 800; margin: 0 0 10px 0;">
+For Entourage
+</p>
+<p style="font-family: 'Georgia', serif; font-size: 15px; color: #666; margin: 0; font-style: italic;">
+Barong Tagalog & Long Gown
+</p>
+</div>
+</div>
+
+<div style="border-top: 1px solid #f0f0f0; padding-top: 45px;">
+<p style="font-family: 'Montserrat', sans-serif; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #043927; font-weight: 900; margin-bottom: 30px;">Our Celebration Colors</p>
+
+<div style="display: flex; flex-wrap: nowrap; justify-content: center; gap: 20px;">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+<div style="width: 50px; height: 50px; background: #043927; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+<span style="font-size: 9px; font-family: 'Montserrat', sans-serif; color: #043927; font-weight: 700; letter-spacing: 1px;">EMERALD</span>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+<div style="width: 50px; height: 50px; background: #F4CFE0; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+<span style="font-size: 9px; font-family: 'Montserrat', sans-serif; color: #999; font-weight: 700; letter-spacing: 1px;">ROSE</span>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+<div style="width: 50px; height: 50px; background: #d4af37; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+<span style="font-size: 9px; font-family: 'Montserrat', sans-serif; color: #999; font-weight: 700; letter-spacing: 1px;">GOLD</span>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+<div style="width: 50px; height: 50px; background: #f5f2e8; border: 1px solid #eee; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+<span style="font-size: 9px; font-family: 'Montserrat', sans-serif; color: #999; font-weight: 700; letter-spacing: 1px;">ECRU</span>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="entourage" style="padding: 100px 15px; background-color: #fdf0f5; text-align: center;">
+<div class="reveal-on-scroll paper-texture" style="background-color: #fcfaf7; max-width: 900px; margin: 0 auto; padding: 0; border-radius: 4px; box-shadow: 0 30px 70px rgba(0,0,0,0.5); border: 1px solid #d4af37; overflow: hidden; position: relative;">
+
+<img src="flower.png" alt="Floral Top" style="position: absolute; top: -4vw; left: 0; width: 100%; height: auto; display: block; transform: rotate(180deg) scale(1.05); z-index: 5; pointer-events: none;">
+
+<div style="padding: 160px 20px 140px 20px; position: relative; z-index: 2; word-wrap: break-word; overflow-wrap: break-word;">
+
+<div style="margin-bottom: 60px;">
+<h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(40px, 10vw, 65px); color: #d4af37; margin-bottom: 10px; line-height: 1.1;">The Entourage</h2>
+<div style="width: 50px; height: 1px; background: #d4af37; margin: 0 auto; opacity: 0.5;"></div>
+</div>
+
+<div style="margin-bottom: 60px;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px;">
+<div>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Parents of the Bride</span>
+<p id="Parents_Bride" style="font-family: 'Playfair Display', serif; font-size: clamp(16px, 4vw, 19px); color: #043927; line-height: 1.8; margin-top: 15px;"></p>
+</div>
+<div>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Parents of the Groom</span>
+<p id="Parents_Groom" style="font-family: 'Playfair Display', serif; font-size: clamp(16px, 4vw, 19px); color: #043927; line-height: 1.8; margin-top: 15px;"></p>
+</div>
+</div>
+</div>
+
+<div style="margin-bottom: 60px;">
+<span style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #d4af37; font-weight: 700; display: block; margin-bottom: 25px;">Principal Sponsors</span>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px;">
+<p id="Principal_Sponsors_Male" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; line-height: 2.0;"></p>
+<p id="Principal_Sponsors_Female" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; line-height: 2.0;"></p>
+</div>
+</div>
+
+<div style="margin-bottom: 60px;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px;">
+<div>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Maid of Honor</span>
+<p id="Maid_of_Honor" style="font-family: 'Playfair Display', serif; font-size: clamp(18px, 5vw, 20px); color: #043927; margin-top: 10px;"></p>
+</div>
+<div>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Best Man</span>
+<p id="Best_Man" style="font-family: 'Playfair Display', serif; font-size: clamp(18px, 5vw, 20px); color: #043927; margin-top: 10px;"></p>
+</div>
+</div>
+</div>
+
+<div style="margin-bottom: 60px;">
+<span style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #d4af37; font-weight: 700; display: block; margin-bottom: 30px;">Secondary Sponsors</span>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+<div style="flex: 1 1 200px;"> <span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #d4af37; font-weight: 800;">To Light Our Path</span>
+<p id="Sponsors_Candle" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; margin-top: 5px;"></p>
+</div>
+<div style="flex: 1 1 200px;">
+<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #d4af37; font-weight: 800;">To Clothe Us As One</span>
+<p id="Sponsors_Veil" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; margin-top: 5px;"></p>
+</div>
+<div style="flex: 1 1 200px;">
+<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #d4af37; font-weight: 800;">To Bind Us Together</span>
+<p id="Sponsors_Cord" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; margin-top: 5px;"></p>
+</div>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 60px;">
+<div>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Bridesmaids</span>
+<p id="Bridesmaids" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; line-height: 2.0; margin-top: 15px;"></p>
+</div>
+<div>
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Groomsmen</span>
+<p id="Groomsmen" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; line-height: 2.0; margin-top: 15px;"></p>
+</div>
+</div>
+
+<div style="margin-bottom: 60px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+<div style="flex: 1 1 140px;">
+<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Ring Bearer</span>
+<p id="Ring_Bearer" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; margin-top: 10px;"></p>
+</div>
+<div style="flex: 1 1 140px;">
+<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Coin Bearer</span>
+<p id="Coin_Bearer" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; margin-top: 10px;"></p>
+</div>
+<div style="flex: 1 1 140px;">
+<span style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Bible Bearer</span>
+<p id="Bible_Bearer" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; margin-top: 10px;"></p>
+</div>
+</div>
+</div>
+
+<div style="margin-bottom: 20px;">
+<span style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #d4af37; font-weight: 700;">Flower Girls</span>
+<p id="Flower_Girls" style="font-family: 'Playfair Display', serif; font-size: clamp(15px, 4vw, 17px); color: #043927; line-height: 2.0; margin-top: 15px;"></p>
+</div>
+
+</div> 
+<img src="flower.png" alt="Floral Footer" style="position: absolute; bottom: -4vw; left: 0; width: 100%; height: auto; display: block; transform: scale(1.05); z-index: 5; pointer-events: none;">
+</div>
+</section>
+
+
+
+<section id="rsvp" style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 20px; background: url('1.jpg') center/cover no-repeat; text-align: center;">
+
+<div class="reveal-on-scroll" style="width: 100%; max-width: 500px; margin: 0 auto; position: relative;">
+
+<div style="background: rgba(255, 255, 255, 0.95); padding: 90px 30px 60px 30px; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1px solid #d4af37; position: relative; overflow: hidden;">
+
+<img src="flower.png" alt="Floral Top" style="position: absolute; top: -20px; left: 0; width: 100%; height: auto; transform: rotate(180deg) scale(1.05); pointer-events: none; z-index: 0; opacity: 0.5;">
+
+<div style="position: relative; z-index: 2;">
+<h2 style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(35px, 8vw, 45px); letter-spacing: 8px; color: #043927; margin: 40px 0 15px 0;">RSVP</h2>
+
+<div style="width: 40px; height: 1.5px; background: #d4af37; margin: 0 auto 20px auto;"></div>
+
+<p style="font-family: 'Georgia', serif; font-size: 16px; color: #4a4a4a; font-style: italic; margin-bottom: 10px;">
+Kindly respond on or before
+</p>
+
+<p id="config-rsvp-deadline" style="font-family: 'Montserrat', sans-serif; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #043927; font-weight: 800; margin-bottom: 40px;">
+October 1st, 2027
+</p>
+
+<a href="https://forms.gle/8StBu4FZQnwJ8APP8" target="_blank" style="display: inline-block; background-color: #043927; color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; padding: 16px 35px; text-decoration: none; border: 1px solid #043927; border-radius: 3px; box-shadow: 0 4px 15px rgba(4, 57, 39, 0.2);">
+Click Here to RSVP
+</a>
+</div>
+
+</div>
+</div>
+</section>
+
+
+
+
+
+<script>
+// Add this to the very top of your script block
+if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+window.scrollTo(0, 0);
+/* =========================================================
+ TEMPLATE CONFIGURATION
+ Change names, dates, links, and text here. The script 
+ will automatically update your HTML when the page loads!
+ ========================================================= */
+const CONFIG = {
+// --- 1. Basic Details ---
+bride: "Mariel",
+groom: "Jasper",
+dateFull: "November 6, 2027",       // Example: November 6, 2027
+dateCaps: "NOVEMBER 06, 2027",      // Example: NOVEMBER 06, 2027
+year: "2027",
+
+// --- 2. Venues & Times ---
+timeCountdown: "2:00 PM",           // Used for the countdown timer logic
+timeText: "At Two O'Clock in the Afternoon",
+
+churchName: "Santuario de San Antonio Parish",
+churchAddress: "3117 McKinley Rd, Forbes Park, Makati City",
+churchTime: "1:00 PM IN THE AFTERNOON",
+churchMap: "https://www.google.com/maps/search/?api=1&query=Santuario+de+San+Antonio+Parish+Forbes+Park",
+
+receptionName: "The Blue Leaf Mckinley",
+receptionSub: "Banyan Pavillion",
+receptionAddress: "100 Park Avenue, McKinley Hill Village, Taguig",
+receptionTime: "4:00 IN THE AFTERNOON",
+receptionMap: "https://www.google.com/maps/search/?api=1&query=The+Blue+Leaf+McKinley+Taguig",
+
+
+
+// --- 4. Details & Tech ---
+rsvpDeadline: "October 1st, 2027",
+hashtag: "#MarielGetsJasper",
+coordName: "Coordinator Name",
+coordNum: "0917 123 4567",
+musicFile: "bgm.mp3",
+webAppUrl: "https://script.google.com/macros/s/AKfycbyMfaiT9NkiUX31PqUgwOfhsOMcRcq654hZA2d0-3CgET0HLcCqwXJTuEyw8oeRwRUm/exec"
+};
+
+// =========================================================
+//  DO NOT EDIT BELOW THIS LINE (System Logic & Injectors)
+// =========================================================
+
+// Safe text injector
+const applyText = (id, text) => { const el = document.getElementById(id); if (el) el.innerHTML = text; };
+const applyClassText = (cls, text) => { document.querySelectorAll('.' + cls).forEach(el => el.innerHTML = text); };
+
+document.addEventListener('DOMContentLoaded', () => {
+// Inject Configuration
+applyText('config-letter-initials', `${CONFIG.bride.charAt(0)} & ${CONFIG.groom.charAt(0)}`);
+applyText('config-bride-1', CONFIG.bride); applyText('config-bride-2', CONFIG.bride);
+applyText('config-groom-1', CONFIG.groom); applyText('config-groom-2', CONFIG.groom);
+applyText('config-date-1', CONFIG.dateFull); applyText('config-date-2', CONFIG.dateCaps);
+applyText('config-time-1', CONFIG.timeText);
+
+applyText('config-church-name', CONFIG.churchName);
+applyText('config-church-time', CONFIG.churchTime);
+applyText('config-church-address', CONFIG.churchAddress);
+const cmap = document.getElementById('config-church-map'); if(cmap) cmap.href = CONFIG.churchMap;
+
+applyText('config-reception-name', CONFIG.receptionName);
+applyText('config-reception-sub', CONFIG.receptionSub);
+applyText('config-reception-time', CONFIG.receptionTime);
+applyText('config-reception-address', CONFIG.receptionAddress);
+const rmap = document.getElementById('config-reception-map'); if(rmap) rmap.href = CONFIG.receptionMap;
+
+applyClassText('ui-church-name-short', CONFIG.churchNameShort);
+applyText('config-tl-time-1', CONFIG.tlTime1); applyText('config-tl-desc-1', CONFIG.tlDesc1);
+applyText('config-tl-time-2', CONFIG.tlTime2); applyText('config-tl-desc-2', CONFIG.tlDesc2);
+applyText('config-tl-time-3', CONFIG.tlTime3); applyText('config-tl-desc-3', CONFIG.tlDesc3);
+applyText('config-tl-time-4', CONFIG.tlTime4); applyText('config-tl-desc-4', CONFIG.tlDesc4);
+
+applyText('config-rsvp-deadline', CONFIG.rsvpDeadline);
+applyClassText('config-hashtag-text', CONFIG.hashtag);
+applyClassText('config-couple-or', `${CONFIG.bride} or ${CONFIG.groom}`);
+
+applyText('config-coord-name', CONFIG.coordName);
+applyText('config-coord-num', CONFIG.coordNum);
+applyText('config-wedding-year', CONFIG.year);
+
+const msrc = document.getElementById('config-audio'); if(msrc) msrc.src = CONFIG.musicFile;
+const audioEl = document.getElementById('bg-music'); if(audioEl) audioEl.load();
+
+// Init Logic
+
+
+const revealElements = document.querySelectorAll('.reveal-on-scroll');
+if (typeof observer !== 'undefined') revealElements.forEach(el => observer.observe(el));
+
+
+
+const urlParams = new URLSearchParams(window.location.search);
+const token = urlParams.get('id');
+loadEntourage();
+});
+
+
+
+function openInvitation() {
+const wrapper = document.getElementById('envelope-wrapper');
+const flap = document.querySelector('.flap-container');
+const audio = document.getElementById('bg-music');
+const mBtn = document.getElementById('musicBtn');
+
+// 1. ELEGANT AUDIO FADE-IN
+if (audio) {
+audio.volume = 0; // Start at zero volume
+audio.play().catch(e => console.log("Music blocked by browser"));
+
+// Gradually increase volume every 200ms
+let fadeAudio = setInterval(() => {
+if (audio.volume < 0.9) {
+audio.volume += 0.1; 
+} else {
+audio.volume = 1;
+clearInterval(fadeAudio); // Stop the loop when at full volume
+}
+}, 200);
+
+if (mBtn) mBtn.classList.add('playing');
+}
+
+// 2. STOP ENVELOPE BOBBING
+if (flap) {
+flap.style.animation = 'none';
+void flap.offsetWidth; 
+}
+document.getElementById('seal').style.pointerEvents = "none";
+
+// 3. START THE OPENING ANIMATION
+wrapper.classList.add('open');
+
+// 4. EXIT TRANSITION
+setTimeout(() => {
+wrapper.classList.add('wrapper-exit');
+
+// Unlock site scrolling
+document.body.classList.add('show-site');
+document.documentElement.classList.add('show-site'); 
+
+window.scrollTo(0, 0); 
+window.dispatchEvent(new Event('scroll'));
+
+// Start the Music Button Scroll Tracker
+if (typeof setupMusicObserver === "function") {
+setupMusicObserver(); 
+}
+}, 310); 
+}
+
+
+
+
+
+// SHOW THE RSVP FORM
+function showMainForm() {
+document.getElementById('rsvp-search-container').classList.add('hidden');
+document.getElementById('rsvp-success-container').classList.add('hidden');
+
+const formContainer = document.getElementById('rsvp-form-container');
+formContainer.classList.remove('hidden');
+
+const hasPlusOne = guestData.maxSeats > 1;
+
+formContainer.innerHTML = `
+       <div class="rsvp-card">
+       <img src="flower.png" alt="Floral Top" style="position: absolute; top: -15px; left: 0; width: 100%; height: auto; transform: rotate(180deg) scale(1.05); pointer-events: none; z-index: 0;">
+           <h2 style="font-size: 2.5rem; color: var(--accent);">Hi ${guestData.fullName},</h2>
+           <label>Attendance</label>
+           <select id="attending-select" onchange="togglePlusOneFields(${hasPlusOne})">
+               <option value="YES">Joyfully Accept</option>
+               <option value="NO">Regretfully Decline</option>
+           </select>
+           
+           <div id="plus-one-area"></div>
+           
+           <button onclick="submitRSVP()" id="submit-btn" style="margin-top:20px;">Confirm RSVP</button>
+       </div>`;
+
+togglePlusOneFields(hasPlusOne);
+}
+
+
+
+
+
+const observerOptions = { threshold: 0.1 }; 
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); } });
+}, observerOptions);
+
+/* --- SPECIAL OBSERVER JUST FOR THE TALL ENTOURAGE SECTION --- */
+const earlyObserverOptions = { threshold: 0.02, rootMargin: "0px 0px 50px 0px" }; 
+const earlyObserver = new IntersectionObserver((entries) => {
+entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); } });
+}, earlyObserverOptions);
+
+// Wait a tiny bit to ensure the main observer has finished setting up, then swap them
+setTimeout(() => {
+const entourageReveal = document.querySelector('#entourage .reveal-on-scroll');
+if (entourageReveal) {
+// Stop the normal observer from delaying it
+observer.unobserve(entourageReveal);
+// Attach the fast observer
+earlyObserver.observe(entourageReveal);
+}
+}, 500);
+
+function loadEntourage() {
+fetch(`${CONFIG.webAppUrl}?action=getEntourage`)
+.then(res => res.json())
+.then(data => {
+Object.keys(data).forEach(roleID => {
+const el = document.getElementById(roleID);
+if (el) {
+let text = data[roleID].trim();
+if (text.includes(',')) { el.innerHTML = text.split(',').map(n => n.trim()).join('<br>'); } 
+else if (text.includes('&')) { let names = text.split('&'); el.innerHTML = names[0].trim() + '<br>' + names[1].trim(); } 
+else { el.innerHTML = text; }
+el.style.opacity = "1";
+}
+});
+window.dispatchEvent(new Event('scroll'));
+});
+}
+
+
+
+function handleMusic(play, event) {
+if (event) { event.preventDefault(); event.stopPropagation(); }
+
+const mBtn = document.getElementById('musicBtn');
+const audio = document.getElementById('bg-music');
+
+if (mBtn) {
+mBtn.style.display = 'flex'; 
+if (play) {
+if (audio) {
+audio.currentTime = 4;
+audio.play().catch(e => console.log("Audio blocked"));
+}
+mBtn.classList.add('playing'); 
+} else {
+if (audio) audio.pause();
+mBtn.classList.remove('playing'); 
+}
+}
+
+// Exit Envelope
+document.getElementById('envelope-wrapper').classList.add('wrapper-exit');
+
+setTimeout(() => {
+document.getElementById('main-site').style.display = 'block';
+
+// UNLOCK SCROLLING
+document.body.classList.add('show-site');
+document.documentElement.classList.add('show-site'); // The missing key
+
+window.scrollTo(0, 0); // Force top
+
+if (typeof setupMusicObserver === "function") {
+setupMusicObserver(); 
+}
+}, 300);
+} 
+function toggleMusic() {
+const audio = document.getElementById("bg-music");
+const mBtn = document.getElementById("musicBtn");
+
+if (!audio || !mBtn) return;
+
+if (audio.paused) {
+audio.play();
+mBtn.classList.add('playing');
+} else {
+audio.pause();
+mBtn.classList.remove('playing');
+}
+}
+// The scroll tracker that fades the button in when you scroll past the photo
+function setupMusicObserver() {
+var btn = document.getElementById("musicBtn");
+
+// Using the exact target that worked perfectly for you last time
+var heroSection = document.querySelector('#main-site > section:first-of-type');
+
+if (!btn || !heroSection) return;
+
+var observer = new IntersectionObserver(function(entries) {
+entries.forEach(entry => {
+if (!entry.isIntersecting) {
+// You scrolled past the top photo -> Show the button
+btn.style.opacity = "1";
+btn.style.pointerEvents = "auto";
+} else {
+// You are at the top -> Hide the button so RSVP text is clear
+btn.style.opacity = "0";
+btn.style.pointerEvents = "none";
+}
+});
+}, { threshold: 0.1 }); 
+
+observer.observe(heroSection);
+}
+
+
+</script>
+</body>
+</html>
